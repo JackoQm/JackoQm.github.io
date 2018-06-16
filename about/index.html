@@ -367,12 +367,12 @@
 
           </div>
           
-
-  
-    <div id="gitalk-container"></div>
-
-  
-
+  <div class="comments" id="comments">
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
+  </div>
 
 
         </div>
@@ -689,20 +689,24 @@
 
 
 
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-   <script type="text/javascript">
-        var gitalk = new Gitalk({
-          clientID: '537645cf6d6949758c66',
-          clientSecret: '37dec31ad65f8f14aabd79039821626b7577c14c',
+  
+    
+      <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script type="text/javascript">
+        const gitalk = new Gitalk({
+          clientID: '',
+          clientSecret: '',
           repo: 'JackoQm.github.io',
           owner: 'JackoQm',
-          admin: ['JackoQm'],
-          id: location.pathname,
-          distractionFreeMode: 'true'
+          admin: 'JackoQm'.split(','),
+          pagerDirection: 'first',
+          // facebook-like distraction free mode
+          distractionFreeMode: false
         })
-        gitalk.render('gitalk-container')           
-       </script>
+        gitalk.render('gitalk-container')
+      </script>
+    
+  
 
 
 
