@@ -692,6 +692,7 @@
   
     
       <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      <script src="js/md5.min.js"></script>
       <script type="text/javascript">
         const gitalk = new Gitalk({
           clientID: '537645cf6d6949758c66',
@@ -700,6 +701,7 @@
           owner: 'JackoQm',
           admin: 'JackoQm'.split(','),
           pagerDirection: 'first',
+          id: md5(window.location.pathname),
           // facebook-like distraction free mode
           distractionFreeMode: false
         })
