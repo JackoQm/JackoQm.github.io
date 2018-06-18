@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://qmsharing.space/"/>
-  <updated>2018-06-02T03:55:05.658Z</updated>
+  <updated>2018-06-18T11:13:48.078Z</updated>
   <id>https://qmsharing.space/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo next 配置 Gitalk 总结</title>
+    <link href="https://qmsharing.space/2018/06/16/Setup-gitalk/"/>
+    <id>https://qmsharing.space/2018/06/16/Setup-gitalk/</id>
+    <published>2018-06-17T00:42:36.000Z</published>
+    <updated>2018-06-18T11:13:48.078Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;经过再三考虑，我选择使用 Gitalk 作为本博客的评论系统，但在配置过程中还是遇到了不少问题，基本大多数问题我都遇到了◢▆▅▄▃崩╰(〒皿〒)╯溃▃▄▅▇◣，感觉官方提供的文档还是不够全面，所以这篇文章希望能帮助到想要使用 Gitalk 的朋友，少走点弯路。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="经验总结" scheme="https://qmsharing.space/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="个人博客" scheme="https://qmsharing.space/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="Hexo" scheme="https://qmsharing.space/tags/Hexo/"/>
+    
+      <category term="next" scheme="https://qmsharing.space/tags/next/"/>
+    
+      <category term="Gitalk" scheme="https://qmsharing.space/tags/Gitalk/"/>
+    
+  </entry>
   
   <entry>
     <title>Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结</title>
