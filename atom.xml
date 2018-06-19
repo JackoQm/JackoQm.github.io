@@ -43,6 +43,35 @@
   </entry>
   
   <entry>
+    <title>常用资料汇总</title>
+    <link href="https://qmsharing.space/2018/05/31/Useful-info/"/>
+    <id>https://qmsharing.space/2018/05/31/Useful-info/</id>
+    <published>2018-05-31T06:29:54.000Z</published>
+    <updated>2018-06-19T15:32:48.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本帖无限期持续更新中&lt;del&gt;，除非我老得连电脑都不会用了&lt;/del&gt;，主要用于汇总一些博主日常学习或工作时查阅的&lt;strong&gt;有用的&lt;/strong&gt;技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的
+      
+    
+    </summary>
+    
+      <category term="技术共享" scheme="https://qmsharing.space/categories/%E6%8A%80%E6%9C%AF%E5%85%B1%E4%BA%AB/"/>
+    
+      <category term="资源" scheme="https://qmsharing.space/categories/%E6%8A%80%E6%9C%AF%E5%85%B1%E4%BA%AB/%E8%B5%84%E6%BA%90/"/>
+    
+    
+      <category term="Hexo" scheme="https://qmsharing.space/tags/Hexo/"/>
+    
+      <category term="Git" scheme="https://qmsharing.space/tags/Git/"/>
+    
+      <category term="Qt" scheme="https://qmsharing.space/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结</title>
     <link href="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/"/>
     <id>https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/</id>

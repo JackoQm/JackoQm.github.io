@@ -114,17 +114,17 @@
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="经过再三考虑，我选择使用 Gitalk 作为本博客的评论系统，但在配置过程中还是遇到了不少问题，基本大多数问题我都遇到了◢▆▅▄▃崩╰(〒皿〒)╯溃▃▄▅▇◣，感觉官方提供的文档还是不够全面，所以这篇文章希望能帮助到想要使用 Gitalk 的朋友，少走点弯路。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/Error.png">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/appSetting.png">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/NotFound.png">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/404.png">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/Comparasion.png">
-<meta property="og:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/ValidationFailed.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/Error.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/appSetting.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/NotFound.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/404.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/Comparasion.png">
+<meta property="og:image" content="https://qmsharing.space/Setup-gitalk/ValidationFailed.png">
 <meta property="og:updated_time" content="2018-06-19T13:42:11.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo next 配置 Gitalk 总结">
 <meta name="twitter:description" content="经过再三考虑，我选择使用 Gitalk 作为本博客的评论系统，但在配置过程中还是遇到了不少问题，基本大多数问题我都遇到了◢▆▅▄▃崩╰(〒皿〒)╯溃▃▄▅▇◣，感觉官方提供的文档还是不够全面，所以这篇文章希望能帮助到想要使用 Gitalk 的朋友，少走点弯路。">
-<meta name="twitter:image" content="https://qmsharing.space/2018/06/16/Setup-gitalk/Error.png">
+<meta name="twitter:image" content="https://qmsharing.space/Setup-gitalk/Error.png">
 
 
 
@@ -441,21 +441,21 @@
 <li><a href="https://asdfv1929.github.io/2018/01/20/gitalk/" target="_blank" rel="noopener">Hexo NexT主题中集成gitalk评论系统</a>：这篇就更加像是教程了，但是我按着配置最后还是出现了不少问题，感觉该教程还是有一些地方没有说清楚。</li>
 </ol>
 <h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p><strong>1. 评论框出现 “Error: Not Found” 错误 </strong></p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/Error.png" alt="Error: Not Found 错误"></p>
+<p><img src="/Setup-gitalk/Error.png" alt="Error: Not Found 错误"></p>
 <p>出现这个问题主要是因为没有正确配置 OAuth application 和站点配置文件（_config.yml），我这里针对第二个教程里的配置提供一些补充性说明：</p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/appSetting.png" alt="OAuth application 配置图"></p>
+<p><img src="/Setup-gitalk/appSetting.png" alt="OAuth application 配置图"></p>
 <p>主题配置文件的补充说明（这里最好用教程1）:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  repo: # 仓库名称，例：asdfv1929.github.io（这里注意，不是仓库地址，所以不需要加上前面的https或github.com/之类的）</span><br><span class="line">  ClientID:     # 之前注册的 OAuth 界面的提供的 ID</span><br><span class="line">  ClientSecret: Client Secret # 同上</span><br><span class="line">  owner: # github 帐号</span><br><span class="line">  admin: # 同上，但可以添加额外的管理员用户，用逗号隔开</span><br><span class="line">  pagerDirection: first</span><br></pre></td></tr></table></figure>
 <p><strong>2. 登录出现 404 错误</strong></p>
 <p>刚配置 Gitalk 后，首先出现了下面的界面：</p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/NotFound.png" alt="需要初始化"></p>
+<p><img src="/Setup-gitalk/NotFound.png" alt="需要初始化"></p>
 <p>根据 <a href="https://github.com/gitalk/gitalk/issues/136" target="_blank" rel="noopener">issue-136</a> 的 keveon 回答可知，点击 Login 按钮登录一下就可以了，然后我点击后就出现了这个下面这个界面：</p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/404.png" alt="404错误"></p>
+<p><img src="/Setup-gitalk/404.png" alt="404错误"></p>
 <p>这个问题花了我点时间去解决，但结果其实挺让我哭笑不得的。请求授权登录时使用的 Get 请求，但我发现我的 Get 请求中查询参数 clientID 并没有被传递（一直为空），这也是导致 404 错误的主要原因。但我对照了半天的配置文件还是没发现哪里错了，后来我发现了一个问题，我是先按着第二个教程配置的，但出现了一些问题后，我去参考了第一篇文章，然后发现它们的 gitalk.swig 文件有一点不同的地方，如下图所示：</p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/Comparasion.png" alt="配置文件对比"></p>
+<p><img src="/Setup-gitalk/Comparasion.png" alt="配置文件对比"></p>
 <p>发现问题了没有？箭头所指的那两个变量的开头一个大写，一个小写。这看着不起眼的不同，在编程中可是非常严重的问题，因为在传递参数的时候，js 会在主题配置文件中寻找 clientID 的值，那如果你在主题配置文件中写的 ClientID 就会出现找不到，那就一直传递的是空值。。。感觉我犯得这个错误很低级，这里指出只是想给出现 404 错误的小伙伴提个醒，参考教程也要用脑<del>，不然就会像我一样。。</del></p>
 <p><strong>3. 出现 Error: Validation Failed 错误</strong></p>
-<p><img src="//qmsharing.space/2018/06/16/Setup-gitalk/ValidationFailed.png" alt="Error: Validation Failed 错误"></p>
+<p><img src="/Setup-gitalk/ValidationFailed.png" alt="Error: Validation Failed 错误"></p>
 <p>错误原因可以参考 <a href="https://github.com/gitalk/gitalk/issues/102" target="_blank" rel="noopener">issue-102</a>，简言之，就是 Github 添加了对 issue label 的长度限制（50个字符），而 Gitalk 会用文章的标题创建一个 label 以方便日后检索，这样过长的文章标题创建 issue 时就会出现问题。</p>
 <p>最简单的解决方法如下，将 layout/_third-party/comments/gitalk.swig 修改为如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if not (theme.duoshuo and theme.duoshuo.shortname) and not theme.duoshuo_shortname %&#125;</span><br><span class="line">    &#123;% if theme.gitalk.enable %&#125;</span><br><span class="line">        &#123;% if page.comments %&#125;</span><br><span class="line">        &lt;script src=&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">            const gitalk = new Gitalk(&#123;</span><br><span class="line">            clientID: &apos;&#123;&#123;theme.gitalk.clientID&#125;&#125;&apos;,</span><br><span class="line">            clientSecret: &apos;&#123;&#123;theme.gitalk.clientSecret&#125;&#125;&apos;,</span><br><span class="line">            repo: &apos;&#123;&#123;theme.gitalk.repo&#125;&#125;&apos;,</span><br><span class="line">            owner: &apos;&#123;&#123;theme.gitalk.owner&#125;&#125;&apos;,</span><br><span class="line">            admin: &apos;&#123;&#123;theme.gitalk.admin&#125;&#125;&apos;.split(&apos;,&apos;),</span><br><span class="line">            pagerDirection: &apos;&#123;&#123;theme.gitalk.pagerDirection&#125;&#125;&apos;,</span><br><span class="line">            id: md5(window.location.pathname),</span><br><span class="line">            distractionFreeMode: false</span><br><span class="line">            &#125;)</span><br><span class="line">            gitalk.render(&apos;gitalk-container&apos;)</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
@@ -517,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/" rel="next" title="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">
-                <i class="fa fa-chevron-left"></i> Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结
+              <a href="/2018/05/31/Useful-info/" rel="next" title="常用资料汇总">
+                <i class="fa fa-chevron-left"></i> 常用资料汇总
               </a>
             
           </div>
@@ -606,7 +606,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -623,7 +623,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -652,7 +656,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
