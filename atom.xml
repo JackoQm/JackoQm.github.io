@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://qmsharing.space/"/>
-  <updated>2018-06-18T11:13:48.078Z</updated>
+  <updated>2018-06-19T13:42:11.360Z</updated>
   <id>https://qmsharing.space/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="https://qmsharing.space/2018/06/16/Setup-gitalk/"/>
     <id>https://qmsharing.space/2018/06/16/Setup-gitalk/</id>
     <published>2018-06-17T00:42:36.000Z</published>
-    <updated>2018-06-18T11:13:48.078Z</updated>
+    <updated>2018-06-19T13:42:11.360Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;经过再三考虑，我选择使用 Gitalk 作为本博客的评论系统，但在配置过程中还是遇到了不少问题，基本大多数问题我都遇到了◢▆▅▄▃崩╰(〒皿〒)╯溃▃▄▅▇◣，感觉官方提供的文档还是不够全面，所以这篇文章希望能帮助到想要使用 Gitalk 的朋友，少走点弯路。&lt;/p&gt;
+      &lt;p&gt;经过再三考虑，我选择使用 Gitalk 作为本博客的评论系统，但在配置过程中还是遇到了不少问题，基本大多数问题我都遇到了◢▆▅▄▃崩╰(〒皿〒)╯溃▃▄▅▇◣，感觉官方提供的文档还是不够全面，所以这篇文章希望能帮助到想要使用 Gitalk 的朋友，少走点弯路。&lt;/p&gt;
     
     </summary>
     
@@ -47,21 +47,32 @@
     <link href="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/"/>
     <id>https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/</id>
     <published>2018-04-25T07:11:14.000Z</published>
-    <updated>2018-06-02T03:55:05.658Z</updated>
+    <updated>2018-06-19T13:41:18.256Z</updated>
     
     <summary type="html">
     
       &lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&quot;#FF0000&quot;&gt;&lt;b&gt;【2018年6月19日更新】&lt;/b&gt;&lt;/font&gt;&lt;br&gt; 本博客已经改为使用 Github Page 作为服务器，因为发现使用 VPS 作为服务器后，我科学上网后不断被封端口，估计和墙的特征识别有关系，所以如果你的 VPS 主要是作为科学上网的工具，就考虑别当个人博客的服务器了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
 &lt;p&gt;&lt;font color=&quot;#FF0000&quot;&gt;&lt;b&gt;【2018年5月17日更新】&lt;/b&gt;&lt;/font&gt;&lt;br&gt;搬瓦工官网现在已经改为 &lt;a href=&quot;https://bwh1.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://bwh1.net/&lt;/a&gt; &lt;del&gt;(最主要是没有被墙了)&lt;/del&gt;。顺便安利一个&lt;a href=&quot;https://www.bandwagonhost.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;搬瓦工中文网&lt;/a&gt;，里面有很详细的选购方案攻略和最新可够买方案咨询，博主受益匪浅，所以也希望大家在提问前可以先去该网站浏览一下，应该能找到你想要的答案。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文并不是从头开始带你搭建个人 Blog 的完整详细攻略，而是博主在搭建本 Blog 遇见的一些问题和经验的总结，毕竟技术是不断在进步，一些以往的经验可能在新版本已经不适用了，所以希望本文能给想自行搭建 Blog 的各位一些帮助，能让大家少走点弯路～&lt;/p&gt;
+&lt;p&gt;本文并不是从头开始带你搭建个人 Blog 的完整详细攻略，而是博主在搭建本 Blog 遇见的一些问题和经验的总结，毕竟技术是不断在进步，一些以往的经验可能在新版本已经不适用了，所以希望本文能给想自行搭建 Blog 的各位一些帮助，能让大家少走点弯路～&lt;/p&gt;
     
     </summary>
+    
+      <category term="经验总结" scheme="https://qmsharing.space/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="个人博客" scheme="https://qmsharing.space/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     
     
       <category term="Hexo" scheme="https://qmsharing.space/tags/Hexo/"/>
     
-      <category term="Blog" scheme="https://qmsharing.space/tags/Blog/"/>
+      <category term="Nginx" scheme="https://qmsharing.space/tags/Nginx/"/>
+    
+      <category term="Bandwagonhost" scheme="https://qmsharing.space/tags/Bandwagonhost/"/>
+    
+      <category term="Namesilo" scheme="https://qmsharing.space/tags/Namesilo/"/>
     
   </entry>
   
