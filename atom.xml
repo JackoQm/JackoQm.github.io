@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://qmsharing.space/"/>
-  <updated>2018-09-20T09:36:13.779Z</updated>
+  <updated>2018-09-20T09:40:55.884Z</updated>
   <id>https://qmsharing.space/</id>
   
   <author>
@@ -21,11 +21,13 @@
     <link href="https://qmsharing.space/2018/07/05/Webug-answers/"/>
     <id>https://qmsharing.space/2018/07/05/Webug-answers/</id>
     <published>2018-07-05T22:58:39.000Z</published>
-    <updated>2018-09-20T09:36:13.779Z</updated>
+    <updated>2018-09-20T09:40:55.884Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;/p&gt;&lt;p style=&quot; color: red; &quot;&gt;&lt;b&gt;【2018年9月17日更新】&lt;/b&gt;&lt;/p&gt;虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总 OJ 网站 &lt;a href=&quot;http://www.wechall.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Wechall&lt;/a&gt;，感兴趣的小伙伴可以去那个网站里选择喜欢的 OJ 进行学习，选择很多，而且很多质量都很高。&lt;p&gt;&lt;/p&gt;
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p style=&quot; color: red; &quot;&gt;&lt;b&gt;【2018年9月17日更新】&lt;/b&gt;&lt;/p&gt;虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总 OJ 网站 &lt;a href=&quot;http://www.wechall.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Wechall&lt;/a&gt;，感兴趣的小伙伴可以去那个网站里选择喜欢的 OJ 进行学习，选择很多，而且很多质量都很高。&lt;p&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;本文基于 Webug 3.0 版本，因为不是攻略详解，因此对于每关仅给出破解的图文过程（获得的 flag 我会打个码，希望小伙伴还是要自己实践一下），详细的漏洞原理会通过参考链接给出，供对于某一个漏洞有兴趣的小伙伴进一步学习。&lt;/p&gt;
     
     </summary>
