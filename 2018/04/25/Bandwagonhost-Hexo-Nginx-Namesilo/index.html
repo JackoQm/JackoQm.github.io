@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="【2018年6月19日更新】 本博客已经改为使用 Github Page 作为服务器，因为发现使用 VPS 作为服务器后，我科学上网后不断被封端口，估计和墙的特征识别有关系，所以如果你的 VPS 主要是作为科学上网的工具，就考虑别当个人博客的服务器了。   【2018年5月17日更新】搬瓦工官网现在已经改为 https://bwh1.net/ (最主要是没有被墙了)。顺便安利一个搬瓦工中文网，里">
+<meta name="keywords" content="Hexo,Nginx,Bandwagonhost,Namesilo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">
+<meta property="og:url" content="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/index.html">
+<meta property="og:site_name" content="Qm&#39;s Blog">
+<meta property="og:description" content="【2018年6月19日更新】 本博客已经改为使用 Github Page 作为服务器，因为发现使用 VPS 作为服务器后，我科学上网后不断被封端口，估计和墙的特征识别有关系，所以如果你的 VPS 主要是作为科学上网的工具，就考虑别当个人博客的服务器了。   【2018年5月17日更新】搬瓦工官网现在已经改为 https://bwh1.net/ (最主要是没有被墙了)。顺便安利一个搬瓦工中文网，里">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-18T16:28:23.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">
+<meta name="twitter:description" content="【2018年6月19日更新】 本博客已经改为使用 Github Page 作为服务器，因为发现使用 VPS 作为服务器后，我科学上网后不断被封端口，估计和墙的特征识别有关系，所以如果你的 VPS 主要是作为科学上网的工具，就考虑别当个人博客的服务器了。   【2018年5月17日更新】搬瓦工官网现在已经改为 https://bwh1.net/ (最主要是没有被墙了)。顺便安利一个搬瓦工中文网，里">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Qm's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结 | Qm's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Qm's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Place to enjoy sharing</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jacko Qm">
+      <meta itemprop="description" content="Stay Hungry Stay Foolish">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qm's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-25 07:11:14" itemprop="dateCreated datePublished" datetime="2018-04-25T07:11:14Z">2018-04-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-18 16:28:23" itemprop="dateModified" datetime="2018-10-18T16:28:23Z">2018-10-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/" itemprop="url" rel="index"><span itemprop="name">经验总结</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/个人博客/" itemprop="url" rel="index"><span itemprop="name">个人博客</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><font color="#FF0000"><b>【2018年6月19日更新】</b></font><br> 本博客已经改为使用 Github Page 作为服务器，因为发现使用 VPS 作为服务器后，我科学上网后不断被封端口，估计和墙的特征识别有关系，所以如果你的 VPS 主要是作为科学上网的工具，就考虑别当个人博客的服务器了。</p>
+</blockquote>
+<blockquote>
+<p><font color="#FF0000"><b>【2018年5月17日更新】</b></font><br>搬瓦工官网现在已经改为 <a href="https://bwh1.net/" target="_blank" rel="noopener">https://bwh1.net/</a> <del>(最主要是没有被墙了)</del>。顺便安利一个<a href="https://www.bandwagonhost.net/" target="_blank" rel="noopener">搬瓦工中文网</a>，里面有很详细的选购方案攻略和最新可够买方案咨询，博主受益匪浅，所以也希望大家在提问前可以先去该网站浏览一下，应该能找到你想要的答案。</p>
+</blockquote>
+<p>本文并不是从头开始带你搭建个人 Blog 的完整详细攻略，而是博主在搭建本 Blog 遇见的一些问题和经验的总结，毕竟技术是不断在进步，一些以往的经验可能在新版本已经不适用了，所以希望本文能给想自行搭建 Blog 的各位一些帮助，能让大家少走点弯路～</p>
+<a id="more"></a>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ol>
+<li>科学上网软件（Lantern、游戏加速器等）</li>
+<li>钱 <del>(废话)</del></li>
+</ol>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><ol>
+<li><strong>购买并搭建好 VPS</strong></li>
+<li>在 VPS 上搭建 Hexo 环境</li>
+<li>在 VPS 上搭建 Nginx </li>
+<li>将 Hexo 部署到 Nginx 上</li>
+<li>注册域名并将添加域名解析</li>
+</ol>
+<p><strong>P.S. 以上步骤除了第一步是必要前提外，其它的顺序可以按照你喜欢的方式进行</strong></p>
+<h2 id="搭建-VPS"><a href="#搭建-VPS" class="headerlink" title="搭建 VPS"></a>搭建 VPS</h2><p><strong><font color="#FF0000">【注】有点尴尬了，博主原来使用的教程好像已经被封了，所以下面提供的链接是找了个步骤基本一样的博文，按着做应该也没有问题</font></strong></p>
+<p><a href="http://www.huizhanzhang.com/2017/05/bandwagon-one-key-shadowsocks.html" target="_blank" rel="noopener">搬瓦工Bandwagon一键搭建ShadowSocks翻墙教程</a></p>
+<hr>
+<p><del>搭建 VPS 期间遇到的最大的问题主要是搬瓦工的官网（和它的 Kiwivm 控制台网站）已经被墙了，所以你需要有一个能科学上网的软件才能购买 VPS 并进行 ss 的搭建(感觉像是一个悖论)。利用什么软件进行科学上网我这里就不推荐了，请大家自行 Google 吧。</del></p>
+<p>整体的搭建过程还是很简单的，这里我就不浪费篇幅进行重复描述了，直接进入下一步了。</p>
+<p><strong><font color="#FF0000">【注2】搭建到安装系统时，最好选择 centos-7-x86_64(-bbr 带不带bbr都行)。因为博主之前时默认使用了centos-6-x86-bbr，然后在安装 Node.js 的时候显示系统版本不兼容。。。</font></strong></p>
+<h2 id="在-VPS-上搭建-Hexo-环境"><a href="#在-VPS-上搭建-Hexo-环境" class="headerlink" title="在 VPS 上搭建 Hexo 环境"></a>在 VPS 上搭建 Hexo 环境</h2><p>后面四步主要参考以下文章：<br><a href="https://www.jianshu.com/p/605c3d32cab9" target="_blank" rel="noopener">在搬瓦工 VPS 上搭建 Hexo</a></p>
+<p>然而，这一步完全可以在官方文档处获得帮助，<strong>官网还有中文哦～</strong></p>
+<p>部署 Hexo 前，需要安装两个依赖—— Node.js 和 Git（建议大家在安装时候都先搭建好 ss，因为不清楚哪个的源会不会已经被墙掉）。其它按着官方文档的步骤走基本不会有什么大问题，搭建完 Hexo 就可以进入下一步了。</p>
+<p>完成 Hexo 的部署后，可以开启其自带的本地服务器进行测试，指令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Hexo-Path   <span class="comment"># “/Hexo-Path”替换为你当时搭建 Hexo 的文件夹</span></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure></p>
+<p>这样，Hexo 就可以通过本地的4000端口进行访问。然而，博主是使用 ssh 方式登陆 VPS，没有图形界面怎么打开浏览器并访问4000端口呢？</p>
+<p>这里，可以采用将本地端口与远程服务器端口进行绑定的方法，然后用本地浏览器打开绑定端口即可，一行指令就能解决问题：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@address_of_remote -p [ssh端口号] -L 127.0.0.1:1234:127.0.0.1:4000</span><br></pre></td></tr></table></figure></p>
+<p>-p 选项是选填的，因为有些 VPS 的 ssh 端口默认是22，如果不是就要填写正确的端口号。<br>这样，我们就将本地的1234端口与 VPS 的4000端口进行绑定，然后在本地浏览器输入 localhost:1234 就可以访问到测试的博客网站咯～</p>
+<h2 id="在-VPS-上搭建-Nginx"><a href="#在-VPS-上搭建-Nginx" class="headerlink" title="在 VPS 上搭建 Nginx"></a>在 VPS 上搭建 Nginx</h2><p>博主在安装到这一步的时候，按着之前提供的简书步骤安装，出现了找不到 nginx 安装包的问题。当时我使用的软件源是 epel-release-7-9.noarch，但我在写这篇博文前又测试了一次，这次却可以成功安装了，我猜测可能是当时软件源暂时下架的了该软件包吧。如果大家遇到找不到 nginx 软件的问题，可以参考一下 nginx 官方文档。</p>
+<p>文档是英文的，为了方便大家，我就把 CentOS 的 Nginx 安装过程写在下面：</p>
+<p>1、 在 /etc/yum.repos.d/ 目录内创建 nginx.repo 文件，在文件内添加如下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里选择安装的是稳定版，需要其它版本的自行参考官方文档。</span></span><br><span class="line">name=nginx repo</span><br><span class="line"><span class="comment"># 这里的“centos/7/”请按着自己系统进行调整</span></span><br><span class="line">baseurl=http://nginx.org/packages/centos/7/<span class="variable">$basearch</span>/ </span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
+<p>2、 执行以下指令即可完成安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y update</span><br><span class="line">sudo yum -y install nginx</span><br></pre></td></tr></table></figure></p>
+<p>官方文档链接在参考资料处。</p>
+<h2 id="将-Hexo-部署到-Nginx-上"><a href="#将-Hexo-部署到-Nginx-上" class="headerlink" title="将 Hexo 部署到 Nginx 上"></a>将 Hexo 部署到 Nginx 上</h2><p>安装完了 Hexo 和 Nginx 后，你离完成搭建也就不远了。</p>
+<p>值得注意的是对 rsync 的配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: rsync</span><br><span class="line">  host: 你 VPS 的 IP 地址或者域名</span><br><span class="line">  user: root</span><br><span class="line">  root: 你想将 Hexo 生成的静态文件存放在 VPS 中的目录 例如: /www/hexo/blog/</span><br><span class="line">  port: 你 VPS 的 ssh 端口号</span><br><span class="line">  delete: <span class="literal">true</span></span><br><span class="line">  verbose: <span class="literal">true</span></span><br><span class="line">  ignore_errors: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的 root 项需要填写一个不同于你 Hexo 搭建时使用的文件夹，因为这个 root 是供 nginx 使用的，如果你这里填写了和 Hexo 搭建时一样文件夹会出现文件被覆盖的严重问题。</p>
+<p>至此，你已经真正完成了个人博客的搭建，在浏览器中输入你的 VPS 地址就可以访问个人博客了，鼓掌👏👏👏</p>
+<h2 id="为-Hexo-更换主题"><a href="#为-Hexo-更换主题" class="headerlink" title="为 Hexo 更换主题"></a>为 Hexo 更换主题</h2><p>原本 Hexo 更换主题应该是一项十分轻松简单的任务，然而博主却在这一步耗费了大量时间。因此，本节主要是介绍 Hexo 更换主题的方法，以及我遇到的一些问题：</p>
+<p><strong>1、下载主题</strong></p>
+<p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo 官方主题站</a>上有很多主题供你挑选，选择一款你喜欢的。<br>例如，本博客使用了 black-blue 这款。</p>
+<p>将它 clone 到 Hexo 的 themes 目录内：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maochunguang/black-blue /PATH_To_Blog/themes/</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、配置主题</strong></p>
+<p>在个人博客的根目录内有 _config.yml 文件，这是整个站点的配置文件，在文件内找到 themes 字段并将其从 landscape 修改为 black-blue。</p>
+<p>至此，主题已经成功配置成功。</p>
+<blockquote>
+<p><strong><div align="center"><font color="#FF0000" size="6">注意</font></div></strong></p>
+</blockquote>
+<blockquote>
+<p>博主之所以在更换主题这一步耗费了大量时间，主要是更换主题后，打开网站后出现了主题显示严重异常的问题。我一开始以为是在部署前没有调用 hexo clean 来清理缓存导致内容显示出错，然而重新部署后问题依然存在。然后，我想在本地端口进行测试，看看主题是否仍然显示错误，但在本地服务器运行的网站却能正确地显示更换后的主题。这就让我十分无语。。。我各种 Google 和逛论坛寻找答案皆无果，都已经准备放弃这个主题了。最后自己想了想，会不会是浏览器自身的缓存了原先网站的内容才导致了显示错误呢？</p>
+<p>于是我将浏览器的缓存清了一下，<strong>接着就能正常显示了！！</strong>这个问题实在让我哭笑不得，我暂不清楚这个是我使用的这个主题的问题，还是我本人的 chrome 浏览器的问题（但我在手机浏览器也遇到同样的问题）。所以在这里给需要自定义主题的朋友们提个醒，<strong><font size="5">在更换主题后可以先清一下浏览器的缓存再打开网站</font></strong></p>
+</blockquote>
+<h2 id="注册域名并将添加域名解析"><a href="#注册域名并将添加域名解析" class="headerlink" title="注册域名并将添加域名解析"></a>注册域名并将添加域名解析</h2><p>这一步并不是必须的，如果你想要别人能更加轻松地访问你的博客的话最好还是注册一个域名，其实也没有多贵，但能换来很多的便利。</p>
+<p>博主在这一步主要参考这个博文：<a href="https://www.jianshu.com/p/27b0ebdcec2c" target="_blank" rel="noopener">域名购买及使用教程</a></p>
+<p>大家跟着这个博文进行注册理论上不会有什么大问题，我这里只是补充几点：</p>
+<ol>
+<li>Namesilo 里标出的域名价格都是按一年算的（打折也只是首年打折），而且你一定要注意看最后结算的金额再给钱（有些域名是特别的，价格会很高）</li>
+<li>注册后设置域名解析的话，如果是国内访问的流量多，最好选择国内的 DNS 服务器（具体我就不推荐了，免得广告嫌疑）</li>
+</ol>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>这是博主的第一篇正式博文，可能在格式排版之类稍有不足，请大家谅解！如果大家有什么问题和建议，欢迎大家广泛留言，我会尽量回复的，谢谢大家支持！</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://frankchen.xyz/2017/07/06/ssh-web-tunnel/" target="_blank" rel="noopener">ssh 建立本地localhost与远程服务器localhost的连接</a></li>
+<li><a href="https://nginx.org/en/linux_packages.html" target="_blank" rel="noopener">Nginx 官方文档</a></li>
+<li><a href="https://hexo.io/zh-tw/docs/index.html" target="_blank" rel="noopener">Hexo 官方文档</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jacko Qm</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/" title="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">https://qmsharing.space/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/Bandwagonhost/" rel="tag"># Bandwagonhost</a>
+          
+            <a href="/tags/Namesilo/" rel="tag"># Namesilo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/31/Useful-info/" rel="prev" title="常用资料汇总">
+                常用资料汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Jacko Qm" />
+            
+              <p class="site-author-name" itemprop="name">Jacko Qm</p>
+              <p class="site-description motion-element" itemprop="description">Stay Hungry Stay Foolish</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/JackoQm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:&#117;&#115;&#101;&#114;&#113;&#109;&#64;&#49;&#54;&#51;&#46;&#99;&#111;&#109;" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/1c2ecd8e07d2" target="_blank" title="Jianshu"><i class="fa fa-fw fa-book"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工具"><span class="nav-number">1.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建步骤"><span class="nav-number">2.</span> <span class="nav-text">搭建步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-VPS"><span class="nav-number">3.</span> <span class="nav-text">搭建 VPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-VPS-上搭建-Hexo-环境"><span class="nav-number">4.</span> <span class="nav-text">在 VPS 上搭建 Hexo 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-VPS-上搭建-Nginx"><span class="nav-number">5.</span> <span class="nav-text">在 VPS 上搭建 Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将-Hexo-部署到-Nginx-上"><span class="nav-number">6.</span> <span class="nav-text">将 Hexo 部署到 Nginx 上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-Hexo-更换主题"><span class="nav-number">7.</span> <span class="nav-text">为 Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册域名并将添加域名解析"><span class="nav-number">8.</span> <span class="nav-text">注册域名并将添加域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">9.</span> <span class="nav-text">结束语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-quora"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jacko Qm</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.3.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+    
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <script type="text/javascript">
+      const gitalk = new Gitalk({
+      clientID: '537645cf6d6949758c66',
+      clientSecret: '37dec31ad65f8f14aabd79039821626b7577c14c',
+      repo: 'JackoQm.github.io',
+      owner: 'JackoQm',
+      admin: 'JackoQm'.split(','),
+      pagerDirection: 'first',
+      id: md5(window.location.pathname),
+      distractionFreeMode: false
+      })
+      gitalk.render('gitalk-container')
+    </script>
+    
+  
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
