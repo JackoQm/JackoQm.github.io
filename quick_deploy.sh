@@ -9,7 +9,7 @@ push() {
 	git push origin hexo 
 }
 deploy() { 
-	git clean && git generate && git deploy 
+	hexo clean && hexo generate && hexo deploy 
 }
 case $# in
   1)
