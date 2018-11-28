@@ -110,32 +110,23 @@
 
 
 
-  <meta name="description" content="【2018年9月17日更新】虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总类 CTF 网站 Wechall，感兴趣的小伙伴可以去那个网站里选择喜欢的进行学习，选择很多，而且很多质量都很高。  本文基于 Webug 3.0 版本，因为不是攻略详解">
-<meta name="keywords" content="渗透,攻略">
+  <meta name="description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
+<meta name="keywords" content="DVWA,学习总结,爆破">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Webug 漏洞练习平台V3.0 答案篇">
-<meta property="og:url" content="https://qmsharing.space/2018/07/05/Webug-answers/index.html">
+<meta property="og:title" content="DVWA-brute">
+<meta property="og:url" content="https://qmsharing.space/2018/11/28/DVWA-brute/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
-<meta property="og:description" content="【2018年9月17日更新】虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总类 CTF 网站 Wechall，感兴趣的小伙伴可以去那个网站里选择喜欢的进行学习，选择很多，而且很多质量都很高。  本文基于 Webug 3.0 版本，因为不是攻略详解">
+<meta property="og:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/First/First.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/First/Table_name.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/First/Column_name.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/First/Answer1.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Second/Second.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Second/Binwalk.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Second/DD.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Second/Answer2.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Third/Third.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Third/Source.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Third/Directory.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Third/WrongPage.PNG">
-<meta property="og:image" content="https://qmsharing.space/2018/07/05/Webug-answers/Third/Answer.PNG">
-<meta property="og:updated_time" content="2018-10-18T16:28:23.354Z">
+<meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG">
+<meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove1.PNG">
+<meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove2.PNG">
+<meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove3.PNG">
+<meta property="og:updated_time" content="2018-11-28T16:32:16.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Webug 漏洞练习平台V3.0 答案篇">
-<meta name="twitter:description" content="【2018年9月17日更新】虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总类 CTF 网站 Wechall，感兴趣的小伙伴可以去那个网站里选择喜欢的进行学习，选择很多，而且很多质量都很高。  本文基于 Webug 3.0 版本，因为不是攻略详解">
-<meta name="twitter:image" content="https://qmsharing.space/2018/07/05/Webug-answers/First/First.PNG">
+<meta name="twitter:title" content="DVWA-brute">
+<meta name="twitter:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
+<meta name="twitter:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG">
 
 
 
@@ -144,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="https://qmsharing.space/2018/07/05/Webug-answers/"/>
+  <link rel="canonical" href="https://qmsharing.space/2018/11/28/DVWA-brute/"/>
 
 
 
@@ -154,7 +145,7 @@
   };
 </script>
 
-  <title>Webug 漏洞练习平台V3.0 答案篇 | Qm's Blog</title>
+  <title>DVWA-brute | Qm's Blog</title>
   
 
 
@@ -327,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/07/05/Webug-answers/">
+    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/11/28/DVWA-brute/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jacko Qm">
@@ -344,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Webug 漏洞练习平台V3.0 答案篇
+          <h1 class="post-title" itemprop="name headline">DVWA-brute
               
             
           </h1>
@@ -369,24 +360,12 @@
                 
               
 
-              <time title="创建时间：2018-07-05 22:58:39" itemprop="dateCreated datePublished" datetime="2018-07-05T22:58:39Z">2018-07-05</time>
+              <time title="创建时间：2018-11-28 10:37:22 / 修改时间：16:32:16" itemprop="dateCreated datePublished" datetime="2018-11-28T10:37:22Z">2018-11-28</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-18 16:28:23" itemprop="dateModified" datetime="2018-10-18T16:28:23Z">2018-10-18</time>
               
             
           </span>
@@ -403,14 +382,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/渗透测试/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/" itemprop="url" rel="index"><span itemprop="name">经验总结</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/渗透测试/小试牛刀/" itemprop="url" rel="index"><span itemprop="name">小试牛刀</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/渗透学习/" itemprop="url" rel="index"><span itemprop="name">渗透学习</span></a></span>
 
                 
                 
@@ -452,59 +431,54 @@
       
 
       
-        <blockquote>
-<p></p><p style=" color: red; "><b>【2018年9月17日更新】</b></p>虽然我已经就把基础的题目都过了一遍，但我还是决定停止更新本文，原因是 webug 里很多题目都设置不算很好，而且缺乏验证答案机制，不容易出题人意图，更不容易写成博客。顺便安利一下我在使用的一个国外汇总类 CTF 网站 <a href="http://www.wechall.net/" target="_blank" rel="noopener">Wechall</a>，感兴趣的小伙伴可以去那个网站里选择喜欢的进行学习，选择很多，而且很多质量都很高。<p></p>
-</blockquote>
-<p>本文基于 Webug 3.0 版本，因为不是攻略详解，因此对于每关仅给出破解的图文过程（获得的 flag 我会打个码，希望小伙伴还是要自己实践一下），详细的漏洞原理会通过参考链接给出，供对于某一个漏洞有兴趣的小伙伴进一步学习。</p>
-<a id="more"></a>
-<h2 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h2><p><img src="/2018/07/05/Webug-answers/First/First.PNG" alt="第一关截图"></p>
-<p>这一关主要考察 GET 型 SQL 注入（因为知道肯定可以注入，我就省略注入点测试部分，详情可以参考链接）。</p>
-<p>首先，通过 order by 语句猜测返回参数的个数（其实看到题目就可以猜到是4个了，保守起见可以试一下别的数字）。还有一种方法是直接使用 union select，与 order by 一样，返回没有报错就证明猜对了。在输入框填写如下语句：</p>
-<p><code>1&#39; order by 4 #</code> // 这里所有的符号都是必须的，不然就会报错</p>
-<p>这样实际执行的语句是 select * from goods where id=’1’ order by 4 #’ ，超过4后就会报错，证明了该表只有4个属性。</p>
-<p>然后，现在就能使用 union select 来进行爆库以获取本题的 flag。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)</p>
+<h2 id="爆破时遇到问题"><a href="#爆破时遇到问题" class="headerlink" title="爆破时遇到问题:"></a>爆破时遇到问题:</h2><p><strong>Hydra 爆破时返回的结果不正确, 而且返回的就是字典头几个数值:</strong></p>
+<p>我一开始直接用下面的命令进行爆破:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:Username and/or password incorrect."</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG" alt="爆破结果图"></p>
+<p>这结果肯定不对… 直接把前15个爆破密码返回了. 造成这个情况的可能性有两个, 都可以通过 curl 指令来检查. 第一个可能性是你的网络出问题了, 有时 hydra 在连不上服务器时会错误的认为返回的结果是正确的, 然而我当时返回的是 proxy error. 第二个可能性是你漏了一些必要参数(Cookies), 这个的确容易忽略, 这里我用 wireshark 进行抓包查看问题.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 "&amp;", 要 escape 它不然会出问题的</span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/28/DVWA-brute/dvwa/brute/prove1.PNG" alt="wireshark 结果"></p>
+<p>可以看出它被重定向了,  查看详细信息会发现它被重定向回 “Location: ../../login.php\r\n”, 也就是一开始的登录界面, (这个登录界面是你登录 dvwa 的界面, 而不是你进行爆破的登录界面), 通过 firefox 抓包, 可以看到我们每次提交 get 请求时会先提交 PHPSESSID 来帮助服务器确定你已经登录了, 否则就会被重定向.</p>
+<p><img src="/2018/11/28/DVWA-brute/dvwa/brute/prove2.PNG" alt="Cookies"></p>
+<p>解决方法就是让 hydra 在提交请求时带上 Cookies, 因此正确的写法是:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:incorrect.:H=Cookie:PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30;security=low;"</span><br></pre></td></tr></table></figure>
+<p>嗯… 我当时也以为这样肯定就对了, 但得到了和第一次错误时一样的结果(这里就不上图了). 继续 wireshark 抓包, 发现</p>
+<p><img src="/2018/11/28/DVWA-brute/dvwa/brute/prove3.PNG" alt="分析错误2"></p>
+<p>这… 怎么少了个 P, 其实吧, 因为 H=Cookie:PHPSESSID=… 这样写是错的, 正确的写法是 H=Cookie:[空格]PHPSESSID=… , 我不清楚是不是就我一个犯了这么低级的问题, 但我觉得这个问题挺隐蔽的, 不抓包分析你会觉得一头雾水, 希望能帮到还无法成功爆破的人. 最终的指令是:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:incorrect.:H=Cookie: PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30;security=low;"</span><br></pre></td></tr></table></figure>
+<h4 id="Low"><a href="#Low" class="headerlink" title="Low"></a>Low</h4><p>的确毫无安全措施, 除了能被爆破还能被 SQL 注入, 利用 ‘ or 1=1 limit 1,1 # 就能把几个用户全部爆破出来. 然后通过显示的图片可以大概猜到用户名是什么, 继续用字典进行爆破.</p>
+<h4 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h4><p>这个相比于 Low 等级多加了 <code>mysqli_real_escape_string</code> 函数来防止 SQL 注入, 但并有从本质上解决爆破问题(差点没看到新添加的 sleep(2), 但你觉得黑客会少那几分钟(难道黑客不会开多线程)吗?)</p>
+<h4 id="High"><a href="#High" class="headerlink" title="High"></a>High</h4><p>这次是在表单添加了一个隐藏的 token, 这个 token 在表单被提交的时候一同提交, 网站先验证这个 token 是否与其在服务端保存的相同, 不相同则拒绝服务. 这个 token 主要用来防止 CSRF 漏洞, 也顺带把 hydra 给防了.</p>
+<p>但这也并不代表它已经无懈可击了, 我们可以通过 python(或其他手段) 来先获得一次界面的 token 后, 再通过下一次的尝试发送出去, 这样也是能实现爆破的, 其他的比如登录失败时随机睡眠个几秒的也是不能解决问题的.</p>
+<h4 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h4><ol>
+<li>增加了登录错误次数限制(本质上解决问题的方法), 这里作者还提醒了如果乱用反馈信息的话, 会让攻击者可以对账户进行枚举. 不过其实这样解决问题还是有个不太安全的地方, 如果有人恶意对一个已知号码进行多次错误, 就会导致被攻击用户被锁定, 也间接造成了拒绝服务攻击, 所以可以考虑在登录前再进行一次验证, 不过其实已经够用了.</li>
+<li>改用了 post 方法来提交表单, 这样避免了把用户名和密码明文放在 url 中进行传递, 是一种安全的方法.</li>
+<li>在处理前先提前验证了是否提交了所有参数, 一个没有提交都不进行处理, 虽然对安全方面有多少提高, 但是一种正确的逻辑.</li>
+<li>使用了 PDO 预编译语句来与数据库通信, 而不是简单的拼接查询语句, 很大程度上(基本完全)防止了 SQL 注入.</li>
+</ol>
+<p>bugs:</p>
 <ol>
-<li>获取表名</li>
+<li><p>它这个判断被锁定时间的方法好像有问题, 不清楚是不是和系统或时区有关, 但是并不能成功锁定用户, 所以我又写了个基于 post 请求的 payload 成功爆破出密码了.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line"><span class="comment">// Calculate when the user would be allowed to login again</span></span><br><span class="line">$last_login = strtotime( $row[ <span class="string">'last_login'</span> ] );</span><br><span class="line">$timeout    = $last_login + ($lockout_time * <span class="number">60</span>);</span><br><span class="line">$timenow    = time();    <span class="comment">// 注意这里, 用的是 php 的 time() 函数</span></span><br><span class="line"><span class="comment">// Check to see if enough time has passed, if it hasn't locked the account</span></span><br><span class="line"><span class="keyword">if</span>( $timenow &lt; $timeout ) &#123;</span><br><span class="line"> $account_locked = <span class="keyword">true</span>;</span><br><span class="line">    <span class="comment">// print "The account is locked&lt;br /&gt;";</span></span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Set the last login time, 这里设置时是用 mysql 的 now() 函数</span></span><br><span class="line">$data = $db-&gt;prepare( <span class="string">'UPDATE users SET last_login = now() WHERE user = (:user) LIMIT 1;'</span> );</span><br><span class="line">$data-&gt;bindParam( <span class="string">':user'</span>, $user, PDO::PARAM_STR );</span><br><span class="line">$data-&gt;execute();</span><br></pre></td></tr></table></figure>
+<p>对比上面两段代码, 可以知道它在设置最后登录时间(last_login)时使用的是 mysql 内置的 now() 来获得时间, 然而在检验的时候却是使用了 php 的 time() 函数来获得时间, 理论上来说, 拿到的时间应该是一样的, 然而在我的测试环境中 time() 拿到的时间总是大于 now(), 所以导致账户每次一被锁定就立刻会被解锁, 从而造成了漏洞存在, 我觉得应该把第一段代码改成下面这样, 统一一下时间的获取方式, 也避免出现这种漏洞.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 从数据库拿数据时多获取一个现在时间 cur_time</span><br><span class="line">$data = $db-&gt;prepare( &apos;SELECT failed_login, last_login, now() as cur_time FROM users WHERE user = (:user) LIMIT 1;&apos; );</span><br><span class="line">......</span><br><span class="line">// Calculate when the user would be allowed to login again</span><br><span class="line">$last_login = strtotime( $row[ &apos;last_login&apos; ] );</span><br><span class="line">$timeout    = $last_login + ($lockout_time * 60);</span><br><span class="line">$timenow    = $row[ &apos;cur_time&apos; ];    // 用这个 cur_time 来作为判断条件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我发现用户名输入中文的话, 即使在 Impossible 级别, 也会出现界面崩溃的情况, 估计是 PDO 的编码问题.</p>
+</li>
 </ol>
-<p><code>2&#39; and 1=2 union select 1,2,3,group_concat(table_name) from information_schema.tables where table_schema=&#39;pentesterlab&#39; #</code> // 这里我默认是知道 flag 表在 pentesterlab 库中，不然可以使用 database() 来获取当前库，或者 information_schema.schemata 的 schema_name 获取所有的库。其中的 “1=2”主要用来减少无关数据的输出而已，你可以删掉来看看效果</p>
-<p><img src="/2018/07/05/Webug-answers/First/Table_name.PNG" alt="获取表名"></p>
-<ol start="2">
-<li>获取目的表的字段</li>
-</ol>
-<p><code>2&#39; and 1=2 union select 1,2,3,group_concat(column_name) from information_schema.columns where table_schema=&#39;pentesterlab&#39; and table_name=&#39;flag&#39; #</code></p>
-<p><img src="/2018/07/05/Webug-answers/First/Column_name.PNG" alt="目的表的字段"></p>
-<ol start="3">
-<li>获取 flag</li>
-</ol>
-<p>万事俱备，只欠东风了</p>
-<p><code>2&#39; and 1=2 union select id,flag,null,null from flag #</code></p>
-<p><img src="/2018/07/05/Webug-answers/First/Answer1.PNG" alt="第一关答案"></p>
-<p>至此，成功拿到第一个 flag（YEAH!!）。答案我就不直接给了，希望小伙伴们亲自体验一下过程，除了获取 flag 外，还可以拿到 root 用户密码等，大家可以自行发挥~</p>
-<h2 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h2><p><img src="/2018/07/05/Webug-answers/Second/Second.PNG" alt="第二关截图"></p>
-<p>本关考察的是图片隐写术<del>（比如图种什么的，嘿嘿嘿… ）</del>，最简单的方法就是把下载的文件改后缀为 .rar，这样就会出现一个 123.txt，里面就保存着 flag。</p>
-<p>但这样的确有点撞彩的感觉，所以提供一个专业一点的方法：通过编码分析器对图片进行分析，我这里使用的是 Kali 系统自带的 binwalk 工具，结果如下图：</p>
-<p><img src="/2018/07/05/Webug-answers/Second/Binwalk.PNG" alt="Binwalk 结果图"></p>
-<p>很明显，在图片偏移 7549 字节之后的内容就是一个 rar 压缩包，然后可以使用 dd(1) 指令进行文件分离：</p>
-<p><img src="/2018/07/05/Webug-answers/Second/DD.PNG" alt="dd 指令分离文件图"></p>
-<p>得到的结果如下，答案就在 123.txt 中：</p>
-<p><img src="/2018/07/05/Webug-answers/Second/Answer2.PNG" alt="第二关答案图"></p>
-<p>图片隐写术挺有意思的，我在参考链接会提供一个比较全面介绍这种技术的博文，感兴趣的小伙伴可以参阅一下。</p>
-<font color="red"> <strong>【注意】</strong>Webug V3.0 里题目的解答系统并没有完善，所以答案并不能通过验证，这一点我参考过很多攻略文章，得到的回答就是官方说并没有做答案验证模块，所以大家只要能得到 flag 就好，不要太钻牛角尖. </font>
+<div align="center"> <font color="red"><b>========== 剧透警告线 ==========</b></font></div>
 
-<h2 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h2><p><img src="/2018/07/05/Webug-answers/Third/Third.PNG" alt="第三关截图"></p>
-<p>虽然我是不信的（但我身体很诚实），结果的确不是这个，查看一下页面源码（不过这道题其实在问题界面就给了提示）</p>
-<p><img src="/2018/07/05/Webug-answers/Third/Source.PNG" alt="第三关源码"></p>
-<p>由上图可知，这套题考察的就是扫目录。在解密的时候，由于题目所在目录并没有设定访问权限，所以可以使用一个偷懒的方法——直接打开父目录。</p>
-<p><img src="/2018/07/05/Webug-answers/Third/Directory.PNG" alt="目录结果图"></p>
-<p>本来这题如果使用了工具进行扫描估计只能扫出 test 目录，然后会得到这个内容：</p>
-<p><img src="/2018/07/05/Webug-answers/Third/WrongPage.PNG" alt="Test 目录内容"></p>
-<p>这里需要你将目录名（也就是 test）进行16位 md5 加密后在访问，也就是要打开上图所示的 4621d373cade4e83 目录，不过我通过偷懒的方法首先打开的就是第一个目录，轻而易举地获得 flag（按照惯例真正的答案我会隐藏）。</p>
-<p><img src="/2018/07/05/Webug-answers/Third/Answer.PNG" alt="第三关答案图"></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>第一题：<a href="https://blog.csdn.net/u011781521/article/details/53959201" target="_blank" rel="noopener">SQL注入系列之PHP+Mysql手动注入</a></p>
-<p>第二关：<a href="https://blog.csdn.net/riba2534/article/details/70544076" target="_blank" rel="noopener">图片隐写术总结</a></p>
-<p>第三关：<a href="https://wizardforcel.gitbooks.io/kali-linux-web-pentest-cookbook/content/ch5.html" target="_blank" rel="noopener">自动化扫描工具</a></p>
-<p>其他攻略推荐：</p>
-<p><a href="http://foreversong.cn/archives/630" target="_blank" rel="noopener">Webug通关攻略</a></p>
+
+
+
+
+<p>爆破出额外的用户:</p>
+<p>u: gordonb p: abc123</p>
+<p>u: pablo p: letmein</p>
+<p>u: smithy p: password</p>
+<p>u: 1337 p: charley # 这个我没有爆出来, 后来查了数据库拿到密码的 md5, 用彩虹桥碰撞了出来</p>
 
       
     </div>
@@ -526,7 +500,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2018/07/05/Webug-answers/" title="Webug 漏洞练习平台V3.0 答案篇">https://qmsharing.space/2018/07/05/Webug-answers/</a>
+    <a href="https://qmsharing.space/2018/11/28/DVWA-brute/" title="DVWA-brute">https://qmsharing.space/2018/11/28/DVWA-brute/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -539,9 +513,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/渗透/" rel="tag"># 渗透</a>
+            <a href="/tags/DVWA/" rel="tag"># DVWA</a>
           
-            <a href="/tags/攻略/" rel="tag"># 攻略</a>
+            <a href="/tags/学习总结/" rel="tag"># 学习总结</a>
+          
+            <a href="/tags/爆破/" rel="tag"># 爆破</a>
           
         </div>
       
@@ -554,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/16/Setup-gitalk/" rel="next" title="Hexo next 配置 Gitalk 总结">
-                <i class="fa fa-chevron-left"></i> Hexo next 配置 Gitalk 总结
+              <a href="/2018/09/20/pwnable-kr-answers/" rel="next" title="pwnable.kr-answers">
+                <i class="fa fa-chevron-left"></i> pwnable.kr-answers
               </a>
             
           </div>
@@ -563,10 +539,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/20/pwnable-kr-answers/" rel="prev" title="pwnable.kr-answers">
-                pwnable.kr-answers <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -775,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一关"><span class="nav-number">1.</span> <span class="nav-text">第一关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二关"><span class="nav-number">2.</span> <span class="nav-text">第二关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三关"><span class="nav-number">3.</span> <span class="nav-text">第三关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爆破时遇到问题"><span class="nav-number">2.</span> <span class="nav-text">爆破时遇到问题:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Low"><span class="nav-number">2.0.1.</span> <span class="nav-text">Low</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Medium"><span class="nav-number">2.0.2.</span> <span class="nav-text">Medium</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High"><span class="nav-number">2.0.3.</span> <span class="nav-text">High</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Impossible"><span class="nav-number">2.0.4.</span> <span class="nav-text">Impossible</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
