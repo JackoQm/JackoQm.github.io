@@ -111,9 +111,9 @@
 
 
   <meta name="description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
-<meta name="keywords" content="DVWA,学习总结,爆破">
+<meta name="keywords" content="DVWA,爆破">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVWA-brute">
+<meta property="og:title" content="DVWA brute_force 总结">
 <meta property="og:url" content="https://qmsharing.space/2018/11/28/DVWA-brute/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
@@ -122,9 +122,9 @@
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove1.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove2.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove3.PNG">
-<meta property="og:updated_time" content="2018-11-30T08:14:33.004Z">
+<meta property="og:updated_time" content="2018-12-04T15:34:42.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DVWA-brute">
+<meta name="twitter:title" content="DVWA brute_force 总结">
 <meta name="twitter:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta name="twitter:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/wrong1.PNG">
 
@@ -145,7 +145,7 @@
   };
 </script>
 
-  <title>DVWA-brute | Qm's Blog</title>
+  <title>DVWA brute_force 总结 | Qm's Blog</title>
   
 
 
@@ -335,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DVWA-brute
+          <h1 class="post-title" itemprop="name headline">DVWA brute_force 总结
               
             
           </h1>
@@ -377,7 +377,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-30 08:14:33" itemprop="dateModified" datetime="2018-11-30T08:14:33Z">2018-11-30</time>
+                <time title="修改时间：2018-12-04 15:34:42" itemprop="dateModified" datetime="2018-12-04T15:34:42Z">2018-12-04</time>
               
             
           </span>
@@ -394,14 +394,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/" itemprop="url" rel="index"><span itemprop="name">经验总结</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/" itemprop="url" rel="index"><span itemprop="name">总结</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/经验总结/渗透学习/" itemprop="url" rel="index"><span itemprop="name">渗透学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/渗透相关/" itemprop="url" rel="index"><span itemprop="name">渗透相关</span></a></span>
 
                 
                 
@@ -451,7 +451,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:Username and/or password incorrect."</span><br></pre></td></tr></table></figure>
 <p><img src="/2018/11/28/DVWA-brute/wrong1.PNG" alt="爆破结果图"></p>
 <p>这结果肯定不对… 直接把前15个爆破密码返回了. 造成这个情况的可能性有两个, 都可以通过 curl 指令来检查. 第一个可能性是你的网络出问题了, 有时 hydra 在连不上服务器时会错误的认为返回的结果是正确的, 然而我当时返回的是 proxy error. 第二个可能性是你漏了一些必要参数(Cookies), 这个的确容易忽略, 这里我用 wireshark 进行抓包查看问题.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 "&amp;", 要 escape 它不然会出问题的</span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 <span class="string">"&amp;"</span>, 要 escape 它不然会出问题的</span></span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
 <p><img src="/2018/11/28/DVWA-brute/prove1.PNG" alt="wireshark 结果"></p>
 <p>可以看出它被重定向了,  查看详细信息会发现它被重定向回 “Location: ../../login.php\r\n”, 也就是一开始的登录界面, (这个登录界面是你登录 dvwa 的界面, 而不是你进行爆破的登录界面), 通过 firefox 抓包, 可以看到我们每次提交 get 请求时会先提交 PHPSESSID 来帮助服务器确定你已经登录了, 否则就会被重定向.</p>
 <p><img src="/2018/11/28/DVWA-brute/prove2.PNG" alt="Cookies"></p>
@@ -510,7 +510,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2018/11/28/DVWA-brute/" title="DVWA-brute">https://qmsharing.space/2018/11/28/DVWA-brute/</a>
+    <a href="https://qmsharing.space/2018/11/28/DVWA-brute/" title="DVWA brute_force 总结">https://qmsharing.space/2018/11/28/DVWA-brute/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -524,8 +524,6 @@
         <div class="post-tags">
           
             <a href="/tags/DVWA/" rel="tag"># DVWA</a>
-          
-            <a href="/tags/学习总结/" rel="tag"># 学习总结</a>
           
             <a href="/tags/爆破/" rel="tag"># 爆破</a>
           
@@ -549,6 +547,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/04/pwnablekr-dragon/" rel="prev" title="Pwnable.kr 提示之 dragon 篇">
+                Pwnable.kr 提示之 dragon 篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -629,7 +631,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -656,7 +658,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -695,7 +703,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
