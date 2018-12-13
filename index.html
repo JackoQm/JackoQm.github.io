@@ -333,7 +333,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/12/04/pwnablekr-dragon/" itemprop="url">
-                  Pwnable.kr 提示之 dragon 篇
+                  Pwnable.kr 之 dragon 篇
                 </a>
               
             
@@ -376,7 +376,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-05 16:40:57" itemprop="dateModified" datetime="2018-12-05T16:40:57Z">2018-12-05</time>
+                <time title="修改时间：2018-12-13 08:57:59" itemprop="dateModified" datetime="2018-12-13T08:57:59Z">2018-12-13</time>
               
             
           </span>
@@ -435,32 +435,15 @@
 
       
         
-          
-            <h2 id="基本检查"><a href="#基本检查" class="headerlink" title="基本检查"></a>基本检查</h2><ul>
-<li>file</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dragon: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=a7a354f09b431b4523192272c448af835b35ae9b, not stripped</span><br></pre></td></tr></table></figure>
-<p>可以看到是个基本的 32 位动态链接程序</p>
-<ul>
-<li>checksec</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     i386-32-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    Canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      No PIE (0x8048000)</span><br></pre></td></tr></table></figure>
-<p>那看来这题不存在栈溢出和栈段执行, 可能是利用一些逻辑漏洞或者 UAF 来进行重定向</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这题切入点的确很隐蔽, 用 IDA 逆向一下可以发现, 本题的检查还是很严格的, 基本不存在栈溢出或者劫持 got 的机会, 我一开始是注意到了这里:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Welcome to Secret Level!\nInput Password : "</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">"%10s"</span>, &amp;s1);</span><br><span class="line"><span class="comment">// 但很明显这个 strcmp 肯定是为 false 的, s1 是一个局部临时变量, 且输入被严格控制</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">strcmp</span>(&amp;s1, <span class="string">"Nice_Try_But_The_Dragons_Won't_Let_You!"</span>) )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Wrong!\n"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line">system(<span class="string">"/bin/sh"</span>);</span><br></pre></td></tr></table></figure>
-<p>可以看到, 基本是绕不过这个 if 语句的, 那么我就设想了要么是直接通过重定向到 system 所在的地址, 要么就是通过 UAF(Use After Free, 没见过的请 Google, 对于这题来说很重要) 这类漏洞来保留那段 Nice Try 密码. 不过当时我还是倾向于前者, 所以先以这个为目标来检查这个程序.</p>
-<p>现在的问题是注入点在哪里, 因为程序还是不小的, 我就不一一附上伪代码了, 但如果你自己研究过这道题, 会发现本题很多检查都很严格, 找不到如修改 EBP 这类的重定向, 但我还是注意到了一些特别的地方:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v3 是代表之前的 XXAttack 函数的结果, 进入则代表龙被杀了</span></span><br><span class="line"><span class="keyword">if</span> ( v3 )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Well Done Hero! You Killed The Dragon!"</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"The World Will Remember You As:"</span>);</span><br><span class="line">    v2 = <span class="built_in">malloc</span>(<span class="number">0x10</span>u);</span><br><span class="line">    __isoc99_scanf(<span class="string">"%16s"</span>, v2);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"And The Dragon You Have Defeated Was Called:"</span>);</span><br><span class="line">    <span class="comment">// 这里有个隐蔽的 UAF 漏洞, 这个 v5 在进入前已经在对应的 attack 函数内被 free 了, 这里 v2 申请了和它一样的大小, 然后又输入内容, 而这里却直接调用了一个已经被 free 了的函数, 明显是个 UAF</span></span><br><span class="line">    ((<span class="keyword">void</span> (__cdecl *)(_DWORD *))*v5)(v5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>分析到这里, 应该已经可以大概猜到这里就是注入点了, 通过 UAF 可以很简单重定向到我们想要执行的 system 地址.</p>
-<p>然后我开始分析杀龙的函数, 嗯…, 首先有两种龙, 分别是 Babe dragon 和 Mama dragon, 前者只有 50 血但每次可以造成 30 点伤害, 而且每回合回血 5; 后者有 80 点血, 每次可以造成 10 点伤害, 且每回合回血 4. 然后存在两种角色, 分别是 Priest(牧师)和 Knight(骑士), 前者有 42 HP 和 50 MP, 有三种操作选项, 分别是攻击(消耗10MP, 造成 20 伤害), 恢复(满 MP, 但会被龙攻击), 圣盾(免疫一回合, 消耗25MP); 后者则有 50 HP, 没有 MP, 有两种攻击选项, 分别是平砍(造成20伤害)和重击(造成40伤害, 但会自损20血, 很蠢).</p>
-<p>游戏部分的分析就差不多了, 那如果要进入到上述那个留名的函数, 则必须要龙被杀死, 嗯… 用这么渣的角色真的能杀死吗? 我排列组合了一下, 因为这题还有个限定条件, 就是会先判定人的血量, 如果低于0就直接输了, 所以不存在和龙同归于尽的机会, 但我排列组合了很多都是与龙同归于尽. 这时, 我突然想起了之前做过的那道 Black jack 题目, 会不会这里也存在这种负数溢出问题呢? 而且我也觉得牧师后两个技能很蠢, 然后我就看到了下面这个细节(超级容易被忽略):</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">// 游戏逻辑</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> ( *((_BYTE *)ptr + <span class="number">8</span>) &gt; <span class="number">0</span> ); <span class="comment">// ptr + 8 代表了龙的血量, 但要注意它转换成什么类型了</span></span><br></pre></td></tr></table></figure>
-<p>整个打龙的逻辑都包含在这个 do-while 循环中, 但是你要留意, 这点很关键, 那个 ptr 是被转换成 (BYTE) 来进行正负比较的.</p>
-<p>估计我写到这里还是有人不知道我在说什么, 有符号的 BYTE 的表示范围是(127~-128), 嗯… 还看不懂, 那么如果龙的血量超过了 127 的话, 它就会变成负数(计算机是这么理解的), 负数是不是小于 0, 这样就会跳出这个循环了(代表龙死了),  然后就进入了我们想要进入的留名函数了. 那么有人会问, 怎么让龙涨血呢? 这里我最后提示一点, 多用牧师的恢复和圣盾这两个神技, 可以创造奇迹 ; P</p>
-<p>提示部分就到这里了, 我觉得提示到这里基本就是能做出来了, 剩下的就只是重定向相关的问题了, 我觉得做到这个级别了, 应该没问题了.</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>解答步骤和 Writeup 可以在我的 Github 中找到: <img src="https://github.com/JackoQm/CTF-Writeups/blob/master/Pwnable.kr/Rookiss/dragon/README.md" alt="dragon writeup"></p>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我知道网上已经有很多这个网站的 writeup 和答案, 但我觉得它们要不就直接把 writeup 拿出来讲逻辑, 就是直接把解答过程手把手教你, 私以为缺少了一点分析过程, 对于类似我这种不喜欢被剧透的玩家有点不友好. 因此, 本系列目标是对 Pwnable 系列题目进行分析并为卡壳了的玩家提供一个思路, 答案并不会直接在本文给出, 如果真的只需要看答案, 可以拉到本文末尾的答案链接, 或者出门右转去 Google, 能搜出一大堆. 本系列持续更新中…(但最近玩 Pwnable.kr 的时间有点少, 所以更新的有点慢, 请见谅)</p>
+<h2 id="难度分析"><a href="#难度分析" class="headerlink" title="难度分析"></a>难度分析</h2><p>解决本题需要结合多个漏洞(这个后面讲), 而且注入点也比较隐蔽, 如果没有之前题目的经验的话, 可能还是比较难以完成. </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/04/pwnablekr-dragon/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
