@@ -113,7 +113,7 @@
   <meta name="description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta name="keywords" content="DVWA,爆破,彩蛋">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DVWA brute_force 总结">
+<meta property="og:title" content="DVWA 总结系列之 brute_force 篇">
 <meta property="og:url" content="https://qmsharing.space/2018/11/28/DVWA-brute/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
@@ -122,9 +122,9 @@
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove1.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove2.PNG">
 <meta property="og:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/prove3.PNG">
-<meta property="og:updated_time" content="2018-12-14T09:02:07.815Z">
+<meta property="og:updated_time" content="2018-12-14T09:08:50.866Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DVWA brute_force 总结">
+<meta name="twitter:title" content="DVWA 总结系列之 brute_force 篇">
 <meta name="twitter:description" content="前言最近想要再系统地过一遍一些基础的渗透漏洞知识, 看到网上不少人推荐 DVWA 这个平台, 就试了一下, 发现的确很适合初学者, 最主要有源码比较这个功能让人能很好地理解利用这个漏洞的原理和过程. 我知道如果 Google 能搜出很多关于 DVWA 的攻略和总结, 本系列文章也是我学习时的总结, 带有很强的主观意识, 也不保证写的全是正确的, 欢迎大家在留言区留言, 大家一起讨论 :)">
 <meta name="twitter:image" content="https://qmsharing.space/2018/11/28/DVWA-brute/wrong1.PNG">
 
@@ -145,7 +145,7 @@
   };
 </script>
 
-  <title>DVWA brute_force 总结 | Qm's Blog</title>
+  <title>DVWA 总结系列之 brute_force 篇 | Qm's Blog</title>
   
 
 
@@ -335,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DVWA brute_force 总结
+          <h1 class="post-title" itemprop="name headline">DVWA 总结系列之 brute_force 篇
               
             
           </h1>
@@ -377,7 +377,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-14 09:02:07" itemprop="dateModified" datetime="2018-12-14T09:02:07Z">2018-12-14</time>
+                <time title="修改时间：2018-12-14 09:08:50" itemprop="dateModified" datetime="2018-12-14T09:08:50Z">2018-12-14</time>
               
             
           </span>
@@ -456,6 +456,7 @@
 <h2 id="爆破时遇到问题"><a href="#爆破时遇到问题" class="headerlink" title="爆破时遇到问题:"></a>爆破时遇到问题:</h2><p><strong>Hydra 爆破时返回的结果不正确, 而且返回的就是字典头几个数值:</strong></p>
 <p>我一开始直接用下面的命令进行爆破:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra 172.28.128.4 -l admin -P Downloads/password.txt http-get-form "/vulnerabilities/brute/:username=^USER^&amp;password=^PASS^&amp;Login=Login:Username and/or password incorrect."</span><br></pre></td></tr></table></figure>
+<p>爆破结果如下:</p>
 <p><img src="/2018/11/28/DVWA-brute/wrong1.PNG" alt="爆破结果图"></p>
 <p>这结果肯定不对… 直接把前15个爆破密码返回了. 造成这个情况的可能性有两个, 都可以通过 curl 指令来检查. 第一个可能性是你的网络出问题了, 有时 hydra 在连不上服务器时会错误的认为返回的结果是正确的, 然而我当时返回的是 proxy error. 第二个可能性是你漏了一些必要参数(Cookies), 这个的确容易忽略, 这里我用 wireshark 进行抓包查看问题.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 附上怎么用 curl 指令来检测, 注意 get 参数的连接符 <span class="string">"&amp;"</span>, 要 escape 它不然会出问题的</span></span><br><span class="line">curl -b "security=low;PHPSESSID=f2uni4k3m1ftf4o7vunc1qud30" -o result.html http://172.28.128.4/vulnerabilities/brute/index.php?username=admin\&amp;password=admin\&amp;Login=Login</span><br></pre></td></tr></table></figure>
@@ -514,7 +515,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2018/11/28/DVWA-brute/" title="DVWA brute_force 总结">https://qmsharing.space/2018/11/28/DVWA-brute/</a>
+    <a href="https://qmsharing.space/2018/11/28/DVWA-brute/" title="DVWA 总结系列之 brute_force 篇">https://qmsharing.space/2018/11/28/DVWA-brute/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -637,7 +638,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -674,7 +675,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -721,7 +726,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -110,18 +110,18 @@
 
 
 
-  <meta name="description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
-<meta name="keywords" content="Hexo,Git,Qt">
+  <meta name="description" content="前言本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路. 难度分析本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并">
+<meta name="keywords" content="Wechall,Exploit,MySQL,PHP,SQL 注入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用资料汇总">
-<meta property="og:url" content="https://qmsharing.space/2018/05/31/Useful-info/index.html">
+<meta property="og:title" content="Wechall 系列之 order_by_query">
+<meta property="og:url" content="https://qmsharing.space/2018/12/18/Wechall-order-by-query/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
-<meta property="og:description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
+<meta property="og:description" content="前言本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路. 难度分析本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-18T16:28:23.354Z">
+<meta property="og:updated_time" content="2018-12-19T08:53:49.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用资料汇总">
-<meta name="twitter:description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
+<meta name="twitter:title" content="Wechall 系列之 order_by_query">
+<meta name="twitter:description" content="前言本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路. 难度分析本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="https://qmsharing.space/2018/05/31/Useful-info/"/>
+  <link rel="canonical" href="https://qmsharing.space/2018/12/18/Wechall-order-by-query/"/>
 
 
 
@@ -140,7 +140,7 @@
   };
 </script>
 
-  <title>常用资料汇总 | Qm's Blog</title>
+  <title>Wechall 系列之 order_by_query | Qm's Blog</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/05/31/Useful-info/">
+    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/12/18/Wechall-order-by-query/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jacko Qm">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常用资料汇总
+          <h1 class="post-title" itemprop="name headline">Wechall 系列之 order_by_query
               
             
           </h1>
@@ -355,24 +355,12 @@
                 
               
 
-              <time title="创建时间：2018-05-31 06:29:54" itemprop="dateCreated datePublished" datetime="2018-05-31T06:29:54Z">2018-05-31</time>
+              <time title="创建时间：2018-12-19 02:53:51 / 修改时间：08:53:49" itemprop="dateCreated datePublished" datetime="2018-12-19T02:53:51Z">2018-12-19</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-18 16:28:23" itemprop="dateModified" datetime="2018-10-18T16:28:23Z">2018-10-18</time>
               
             
           </span>
@@ -389,14 +377,21 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术共享/" itemprop="url" rel="index"><span itemprop="name">技术共享</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解题分析/" itemprop="url" rel="index"><span itemprop="name">解题分析</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术共享/资源/" itemprop="url" rel="index"><span itemprop="name">资源</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解题分析/Wechall/" itemprop="url" rel="index"><span itemprop="name">Wechall</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解题分析/Wechall/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
 
                 
                 
@@ -438,16 +433,16 @@
       
 
       
-        <p>本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的<strong>有用的</strong>技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。<br><a id="more"></a></p>
-<h2 id="Git-篇"><a href="#Git-篇" class="headerlink" title="Git 篇"></a>Git 篇</h2><p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git 从入门到精通</a>：这是我学习 Git 的启蒙导师，写的很系统和详细，图文并茂，如果大家对于 Git 还是觉得很晕的话，建议参考一下。</p>
-<h2 id="Qt-篇"><a href="#Qt-篇" class="headerlink" title="Qt 篇"></a>Qt 篇</h2><p><a href="http://www.runoob.com/w3cnote/px-pt-em-convert-table.html" target="_blank" rel="noopener">px,pt,em换算表</a>：之所以用到这个表，主要是开发过程中需要配合 UI 那边提供的脚注图进行界面绘制，Qt 内字体大小使用的是 pt，而 UI 提供的图给的是 px，有这个表就很方便了~</p>
-<p><a href="https://blog.csdn.net/yanche521/article/details/51017601" target="_blank" rel="noopener">Qt 窗口设置背景图</a>：主要是通过 stylesheet 或纯代码这两种方法，个人推荐还是使用 stylesheet，很好用；</p>
-<p><a href="https://blog.csdn.net/shangxuehan/article/details/53781730" target="_blank" rel="noopener">Qt 修改 UI 类型的方法</a>：之前有需求要修改创建 ui 类时自动创建类的基类，修改后 setupUI 那行就报错，原因就是没有修改 .ui 文件里的基类信息；</p>
-<h2 id="Hexo-篇"><a href="#Hexo-篇" class="headerlink" title="Hexo 篇"></a>Hexo 篇</h2><p><a href="https://qmsharing.space/2018/04/25/bandwagonhost-hexo-nginx-namesilo/">Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结</a>：我写的搭建个人博客的经验总结，虽然现在已经不是采用这个方案了，但对于想要使用这种方案的小伙伴来说还是有点借鉴意义的；</p>
-<p><a href="https://qmsharing.space/2018/06/16/setup-gitalk/">Hexo next 配置 Gitalk 总结</a>：我写的给博客添加 Gitalk 评论系统的经验总结，当初搭建的时候踩了不少坑，希望给想要使用 Gitalk 的小伙伴一些帮助，可以少走点弯路；</p>
-<p><a href="https://zhuanlan.zhihu.com/p/30836436" target="_blank" rel="noopener">Hexo Next 主题优化</a>：挺全面的博客优化教程，适用于像我一样使用 Hexo 和 next 主题的小伙伴；</p>
-<p><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">hexo 博客中完美插入本地图片</a>：教你怎样在写博客的时候添加本地图片的教程，写的比较详细和用心；</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>如果大家发现链接失效或者哪一篇教程有什么问题的情况，欢迎大家主动在下方进行留言，大家一起讨论一起进步~</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路.</p>
+<h2 id="难度分析"><a href="#难度分析" class="headerlink" title="难度分析"></a>难度分析</h2><p>本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并有较好的 Payload 构造和脚本编写能力(当然, 你想花个几小时手工注入, 我也不拦着你 ;-) ).</p>
+<a id="more"></a>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题的目的是通过各种方式得到管理员的密码, 然后提交正确的密码. 通过对于题目名字的分析, 大概可以猜到这应该是个注入题, 但本题只给了部分的核心代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这个函数可以忽略, 就是连接数据库用的</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addslash2_get_db</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addslash2_sort</span><span class="params">($orderby, $dir)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="comment"># 连接数据库用</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">false</span> === ($db = addslash2_get_db())) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">static</span> $whitelist = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">        <span class="keyword">static</span> $names = <span class="keyword">array</span>(<span class="number">1</span> =&gt; <span class="string">'Username'</span>, <span class="number">3</span> =&gt; <span class="string">'Apples'</span>, <span class="number">4</span> =&gt; <span class="string">'Bananas'</span>, <span class="number">5</span> =&gt; <span class="string">'Cherries'</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 这个变量指定排序方向, 这个白名单函数被隐藏了</span></span><br><span class="line">        $dir = GDO::getWhitelistedDirS($dir, <span class="string">'DESC'</span>);</span><br><span class="line">        <span class="comment"># 看起来像是用了白名单噢! 怎么办!</span></span><br><span class="line">        <span class="keyword">if</span> (!in_array($orderby, $whitelist)) &#123;</span><br><span class="line">                <span class="keyword">return</span> htmlDisplayError(<span class="string">'Error 1010101: Not in whitelist.'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 还有 escape, 好像很严格呢...</span></span><br><span class="line">        $orderby = $db-&gt;escape($orderby);</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 直接拼接 SQL 语句, 啊哈, 还限制了显示个数</span></span><br><span class="line">        $query = <span class="string">"SELECT * FROM users ORDER BY $orderby $dir LIMIT 10"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># ... 显示结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果简单地审计一下, 好像输入都被严格过滤过, 而且还是使用了白名单这种安全的方法. 不过, 这题给我的感觉好像是前面的题目的综合(如果你和我一样是按 PHP 分类顺序做下来的话). 如果你做过 PHP 0815, 你会轻易地发现, 这个 in_array 的使用好像没有设置为严格模式, 更要命的是, 它是和 int 类型进行比较(这个问题可以参考我的 PHP 0815 的文章). 这样的话, 我可以判断出这是一个注入点(因为我只要输入任意的白名单数字+一个非数字就能绕过 in_array, 比如 “1 – “), 你输入后会发现其实这个数据库里有 21 行.</p>
+<p>有些人可能做过 PHP 0815, 然后轻易地发现这个漏洞, 但他会说, 这个 $orderby 还被 escape 过, 怎么还存在注入呢? 如果你做过 No Escape 这题, 你会知道 mysqli_real_escape_string 仅过滤个别特殊字符, 但这个函数无法防御数字型注入和类似这种 order by 注入, 因此你只要不用任何引号, 其他的注释符号(– 和 #)都是能正常使用的.</p>
+<p>有人可能已经发行了这个注入点, 并且成功注入了, 但却不知道下一步该怎么做? 这其实也是本题的一个难点, 因为 order by 的特殊性(它基本只能放在语句末尾), 导致无法使用常用的 union select 大法, 而且很多的注入方法也会失效. 但也并不是无法注入的, 既然我们不能 “明注”, 我们可以盲注啊. 这里提示一下, order by 能接 if 或 case 语句, 然后你就可以根据不同的结果, 控制显示的结果从而猜解出答案. 再提示下去, 答案就出来了, 如果你还是不懂, 可以在留言提出你的问题, 我看到后会尽快解答.</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>解答步骤和 Writeup 可以在我的 Github 中找到: <a href="https://github.com/JackoQm/CTF-Writeups/tree/master/Wechall/PHP/order_by_query" target="_blank" rel="noopener">JackoQm’s Github: order_by_query</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/icez/p/Mysql-Order-By-Injection-Summary.html" target="_blank" rel="noopener">Mysql Order By注入总结</a></p>
 
       
     </div>
@@ -469,7 +464,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2018/05/31/Useful-info/" title="常用资料汇总">https://qmsharing.space/2018/05/31/Useful-info/</a>
+    <a href="https://qmsharing.space/2018/12/18/Wechall-order-by-query/" title="Wechall 系列之 order_by_query">https://qmsharing.space/2018/12/18/Wechall-order-by-query/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -482,11 +477,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Wechall/" rel="tag"># Wechall</a>
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/Exploit/" rel="tag"># Exploit</a>
           
-            <a href="/tags/Qt/" rel="tag"># Qt</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/SQL-注入/" rel="tag"># SQL 注入</a>
           
         </div>
       
@@ -499,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/" rel="next" title="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">
-                <i class="fa fa-chevron-left"></i> Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结
+              <a href="/2018/12/04/pwnablekr-dragon/" rel="next" title="Pwnable.kr 系列之 dragon 篇">
+                <i class="fa fa-chevron-left"></i> Pwnable.kr 系列之 dragon 篇
               </a>
             
           </div>
@@ -508,10 +507,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/16/Setup-gitalk/" rel="prev" title="Hexo next 配置 Gitalk 总结">
-                Hexo next 配置 Gitalk 总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -750,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-篇"><span class="nav-number">1.</span> <span class="nav-text">Git 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qt-篇"><span class="nav-number">2.</span> <span class="nav-text">Qt 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-篇"><span class="nav-number">3.</span> <span class="nav-text">Hexo 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难度分析"><span class="nav-number">2.</span> <span class="nav-text">难度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">4.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
