@@ -110,18 +110,21 @@
 
 
 
-  <meta name="description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
-<meta name="keywords" content="Hexo,Git,Qt">
+  <meta name="description" content="本题目标本题好像是 v1.10 版本新加入的, 因此网上的分析文章并不是很多.  CSP(Content Security Policy) 是一种用来防止 XSS 攻击的手段, 通过在头部添加 Content-Security-Policy 的相关参数, 来限制未知(不信任)来源的 javascript 的执行从而防止 XSS 攻击. 本题并不是要介绍这种技术有什么漏洞, 而且本题所导致的 XSS">
+<meta name="keywords" content="DVWA,CSP,XSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用资料汇总">
-<meta property="og:url" content="https://qmsharing.space/2018/05/31/Useful-info/index.html">
+<meta property="og:title" content="DVWA 总结系列之 CSP 篇">
+<meta property="og:url" content="https://qmsharing.space/2018/12/20/DVWA-csp/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
-<meta property="og:description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
+<meta property="og:description" content="本题目标本题好像是 v1.10 版本新加入的, 因此网上的分析文章并不是很多.  CSP(Content Security Policy) 是一种用来防止 XSS 攻击的手段, 通过在头部添加 Content-Security-Policy 的相关参数, 来限制未知(不信任)来源的 javascript 的执行从而防止 XSS 攻击. 本题并不是要介绍这种技术有什么漏洞, 而且本题所导致的 XSS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-18T16:28:23.354Z">
+<meta property="og:image" content="https://qmsharing.space/2018/12/20/DVWA-csp/result.PNG">
+<meta property="og:image" content="https://qmsharing.space/2018/12/20/DVWA-csp/result2.PNG">
+<meta property="og:updated_time" content="2018-12-20T14:31:30.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用资料汇总">
-<meta name="twitter:description" content="本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的有用的技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。">
+<meta name="twitter:title" content="DVWA 总结系列之 CSP 篇">
+<meta name="twitter:description" content="本题目标本题好像是 v1.10 版本新加入的, 因此网上的分析文章并不是很多.  CSP(Content Security Policy) 是一种用来防止 XSS 攻击的手段, 通过在头部添加 Content-Security-Policy 的相关参数, 来限制未知(不信任)来源的 javascript 的执行从而防止 XSS 攻击. 本题并不是要介绍这种技术有什么漏洞, 而且本题所导致的 XSS">
+<meta name="twitter:image" content="https://qmsharing.space/2018/12/20/DVWA-csp/result.PNG">
 
 
 
@@ -130,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="https://qmsharing.space/2018/05/31/Useful-info/"/>
+  <link rel="canonical" href="https://qmsharing.space/2018/12/20/DVWA-csp/"/>
 
 
 
@@ -140,7 +143,7 @@
   };
 </script>
 
-  <title>常用资料汇总 | Qm's Blog</title>
+  <title>DVWA 总结系列之 CSP 篇 | Qm's Blog</title>
   
 
 
@@ -313,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/05/31/Useful-info/">
+    <link itemprop="mainEntityOfPage" href="https://qmsharing.space/2018/12/20/DVWA-csp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jacko Qm">
@@ -330,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常用资料汇总
+          <h1 class="post-title" itemprop="name headline">DVWA 总结系列之 CSP 篇
               
             
           </h1>
@@ -355,24 +358,12 @@
                 
               
 
-              <time title="创建时间：2018-05-31 06:29:54" itemprop="dateCreated datePublished" datetime="2018-05-31T06:29:54Z">2018-05-31</time>
+              <time title="创建时间：2018-12-20 08:57:15 / 修改时间：14:31:30" itemprop="dateCreated datePublished" datetime="2018-12-20T08:57:15Z">2018-12-20</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-18 16:28:23" itemprop="dateModified" datetime="2018-10-18T16:28:23Z">2018-10-18</time>
               
             
           </span>
@@ -389,14 +380,21 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术共享/" itemprop="url" rel="index"><span itemprop="name">技术共享</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/" itemprop="url" rel="index"><span itemprop="name">总结</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术共享/资源/" itemprop="url" rel="index"><span itemprop="name">资源</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/渗透学习/" itemprop="url" rel="index"><span itemprop="name">渗透学习</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/渗透学习/DVWA/" itemprop="url" rel="index"><span itemprop="name">DVWA</span></a></span>
 
                 
                 
@@ -438,16 +436,33 @@
       
 
       
-        <p>本帖无限期持续更新中，主要用于汇总一些博主日常学习或工作时查阅的<strong>有用的</strong>技术资料，这些资料有原创的也有转载的，我会尽量地保证所列的资料的质量，欢迎大家来评论，一起学习一起进步。现在暂时将所有的资料写在一篇文章中，等以后数量多起来了我会进行适当地分类。<br><a id="more"></a></p>
-<h2 id="Git-篇"><a href="#Git-篇" class="headerlink" title="Git 篇"></a>Git 篇</h2><p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git 从入门到精通</a>：这是我学习 Git 的启蒙导师，写的很系统和详细，图文并茂，如果大家对于 Git 还是觉得很晕的话，建议参考一下。</p>
-<h2 id="Qt-篇"><a href="#Qt-篇" class="headerlink" title="Qt 篇"></a>Qt 篇</h2><p><a href="http://www.runoob.com/w3cnote/px-pt-em-convert-table.html" target="_blank" rel="noopener">px,pt,em换算表</a>：之所以用到这个表，主要是开发过程中需要配合 UI 那边提供的脚注图进行界面绘制，Qt 内字体大小使用的是 pt，而 UI 提供的图给的是 px，有这个表就很方便了~</p>
-<p><a href="https://blog.csdn.net/yanche521/article/details/51017601" target="_blank" rel="noopener">Qt 窗口设置背景图</a>：主要是通过 stylesheet 或纯代码这两种方法，个人推荐还是使用 stylesheet，很好用；</p>
-<p><a href="https://blog.csdn.net/shangxuehan/article/details/53781730" target="_blank" rel="noopener">Qt 修改 UI 类型的方法</a>：之前有需求要修改创建 ui 类时自动创建类的基类，修改后 setupUI 那行就报错，原因就是没有修改 .ui 文件里的基类信息；</p>
-<h2 id="Hexo-篇"><a href="#Hexo-篇" class="headerlink" title="Hexo 篇"></a>Hexo 篇</h2><p><a href="https://qmsharing.space/2018/04/25/bandwagonhost-hexo-nginx-namesilo/">Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结</a>：我写的搭建个人博客的经验总结，虽然现在已经不是采用这个方案了，但对于想要使用这种方案的小伙伴来说还是有点借鉴意义的；</p>
-<p><a href="https://qmsharing.space/2018/06/16/setup-gitalk/">Hexo next 配置 Gitalk 总结</a>：我写的给博客添加 Gitalk 评论系统的经验总结，当初搭建的时候踩了不少坑，希望给想要使用 Gitalk 的小伙伴一些帮助，可以少走点弯路；</p>
-<p><a href="https://zhuanlan.zhihu.com/p/30836436" target="_blank" rel="noopener">Hexo Next 主题优化</a>：挺全面的博客优化教程，适用于像我一样使用 Hexo 和 next 主题的小伙伴；</p>
-<p><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener">hexo 博客中完美插入本地图片</a>：教你怎样在写博客的时候添加本地图片的教程，写的比较详细和用心；</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>如果大家发现链接失效或者哪一篇教程有什么问题的情况，欢迎大家主动在下方进行留言，大家一起讨论一起进步~</p>
+        <h2 id="本题目标"><a href="#本题目标" class="headerlink" title="本题目标"></a>本题目标</h2><p>本题好像是 v1.10 版本新加入的, 因此网上的分析文章并不是很多. </p>
+<p>CSP(Content Security Policy) 是一种用来防止 XSS 攻击的手段, 通过在头部添加 Content-Security-Policy 的相关参数, 来限制未知(不信任)来源的 javascript 的执行从而防止 XSS 攻击. 本题并不是要介绍这种技术有什么漏洞, 而且本题所导致的 XSS 攻击都是因为开发者的不正当配置所致. 所以本题仅仅让你能成功执行一个弹框的 XSS 注入即可.</p>
+<a id="more"></a>
+<h2 id="Low"><a href="#Low" class="headerlink" title="Low"></a>Low</h2><p>因为 CSP 主要是客户端进行防御, 所以服务端的核心代码应该是没有变的(除了 CSP 头):</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 主要就是设置 HTTP 头部信息, 后面就不粘代码了, 直接分析头部即可</span></span><br><span class="line">$headerCSP = <span class="string">"Content-Security-Policy: script-src 'self' https://pastebin.com  example.com code.jquery.com https://ssl.google-analytics.com ;"</span>; <span class="comment">// allows js from self, pastebin.com, jquery and google analytics.</span></span><br><span class="line"></span><br><span class="line">header($headerCSP);</span><br></pre></td></tr></table></figure>
+<p>这个头部信息的具体含义可以参考这个 <a href="https://content-security-policy.com/" target="_blank" rel="noopener">参考文档</a>, 这里直接理解就是能从 <a href="https://pastebin.com" target="_blank" rel="noopener">https://pastebin.com</a> 等网站加载 javascript, 你可以试试从自己的搭建的服务器中加载 javascript, 结果如下:</p>
+<p><img src="/2018/12/20/DVWA-csp/result.PNG" alt="加载结果"></p>
+<p>可以明显的看到, 这个 javascript 的加载被 blocked 了(估计 Firefox 的插件 No-script 也是基于这个的). 既然不能从未指定的源加载 javascript, 那我可以从它信任的源, 比如 <a href="https://pastebin.com" target="_blank" rel="noopener">https://pastebin.com</a> 中来加载. 可能有人不知道这个网站是什么, 我开始也不知道的, 但你打开就会发现这就是个共享粘贴板, 允许你粘贴任何文本内容.</p>
+<p>那我们就可以在这个粘贴板网站中写入一段恶意 javascript, 比如 <code>alert(&quot;hacked&quot;)</code>, 然后, 通过该网站的 raw 形式(原生)来显示, 我当时生成的网址是这个 <a href="https://pastebin.com/raw/1R47AAtS" target="_blank" rel="noopener">恶意 javascript</a>, 然后你就可以在 URL 栏中输入这个网址, 让浏览器将这个远程加载文本当作 javascript 来执行. Boom! 成功注入, 结果你们自己去试哈.</p>
+<h2 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h2><p>通过浏览器抓包可以看到:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;nonce-TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=&apos;;</span><br></pre></td></tr></table></figure>
+<p>这次使用了两个新的参数(self 不算哈). 其中  ‘unsafe-inline’  代表可以执行诸如 onclick 等事件或 script 标签内的内容这类 javascript, 而后者就是指如果你要使用 script 标签加载 javascript, 你需要指明其 nonce 值, 比如 <code>&lt;script nonce=&quot;TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=&quot;&gt;alert(&#39;hacked&#39;)&lt;/script&gt;</code>这个就能正常加载, 从而造成 XSS 注入.</p>
+<p>但需要注意的是, 如果你测试 <code>&lt;img src=hacked onerror=alert(&#39;hacked&#39;)&gt;</code> 这类在标签内执行的 javascript, 会得到如下结果:</p>
+<p><img src="/2018/12/20/DVWA-csp/result2.PNG" alt="加载标签 js"></p>
+<p>错误提示告诉我们, 因为头部指定了 nonce 值, 所以自动忽略了  ‘unsafe-inline’  这个参数. 因此可以判断这两个参数是不能共存的, 而且如果共存, 后者是会覆盖前者的.</p>
+<p>这里还有个有意思的地方, 你看那个 nonce 的值很明显是个 base64 编码, 我就无聊去解码了一下, 嗯… 原文”TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=”转换后是 “Never going to give you up”, 还是给出题者 666. 不过呢, 正确的防御方式下的 nonce 值不应该是个固定值, 而是应该是个随机生成的值, 这样才能真正达到防止 XSS 的目的.</p>
+<h2 id="High"><a href="#High" class="headerlink" title="High"></a>High</h2><p>这个级别已经没有输入框了, 不过题目已经给了足够多的提示. 首先先看一下 CSP 头, 发现只有 <code>script-src &#39;self&#39;;</code>, 看来只允许本界面加载的 javascript 执行. 然后研究了一下这个点击显示答案的逻辑(逻辑在 <code>source/high.js</code>里), 大致如下: 点击按钮 -&gt; js 生成一个 script 标签(src 指向 source/jsonp.php?callback=solveNum), 并把它加入到 DOM 中 -&gt; js 中定义了一个 solveNum 的函数 -&gt; 因此 script 标签会把远程加载的 <code>solveSum({&quot;answer&quot;:&quot;15&quot;})</code> 当作 js 代码执行, 而这个形式正好就是调用了 solveSum 函数, 然后这个函数就会在界面适当的位置写入答案.</p>
+<p>本来嘛, 应该是没办法修改在服务器的 jsonp.php 文件的(除非结合别的漏洞, 拿 shell 后修改). 然而, 我后来在查看服务端源码的时候发现了这个:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span> ($_POST[<span class="string">'include'</span>])) &#123;</span><br><span class="line">$page[ <span class="string">'body'</span> ] .= <span class="string">"</span></span><br><span class="line"><span class="string">    "</span> . $_POST[<span class="string">'include'</span>] . <span class="string">"</span></span><br><span class="line"><span class="string">"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 剩余的显示代码</span></span><br></pre></td></tr></table></figure>
+<p>666, 竟然还偷偷接收 include 参数(不清楚是不是作者复用了之前 Medium 的代码). 总之, 这肯定能作为一个注入点, 我开始打算用简单粗暴的 <code>&lt;script&gt;alert(&#39;hacked&#39;)&lt;/script&gt;</code> 来搞定的, 虽知道, 这种是属于 ‘unsafe-inline’ 形式的, 所以被限制执行了. 嗯… 既然如此的话, 那我就利用 src 吧. </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (array_key_exists (<span class="string">"callback"</span>, $_GET)) &#123;</span><br><span class="line">    $callback = $_GET[<span class="string">'callback'</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$outp = <span class="keyword">array</span> (<span class="string">"answer"</span> =&gt; <span class="string">"15"</span>);</span><br><span class="line"><span class="comment"># 这个 callback 可以被控制的</span></span><br><span class="line"><span class="keyword">echo</span> $callback . <span class="string">"("</span>.json_encode($outp).<span class="string">")"</span>;</span><br></pre></td></tr></table></figure>
+<p>这个即使你不看源码, 你做几个测试也会发现, 那个 callback 参数可以被操控以生成任何你想要得到的结果, 比如 alert, 因此可以构造 Payload: <code>&lt;script src=&quot;source/jsonp.php?callback=alert(&#39;hacked&#39;);&quot;&gt;&lt;/script&gt;</code>, 并把这个当做 include 参数传给界面就 Boom! 注入成功!</p>
+<h2 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h2><p>该级别主要还是修复了 callback 参数可被控制问题(毕竟这是问题根源):</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$outp = <span class="keyword">array</span> (<span class="string">"answer"</span> =&gt; <span class="string">"15"</span>);</span><br><span class="line"><span class="comment"># 写死的话, 就没办法被控制了</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"solveSum ("</span>.json_encode($outp).<span class="string">")"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://content-security-policy.com/" target="_blank" rel="noopener">Content Security Policy Reference</a></li>
+</ul>
 
       
     </div>
@@ -469,7 +484,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2018/05/31/Useful-info/" title="常用资料汇总">https://qmsharing.space/2018/05/31/Useful-info/</a>
+    <a href="https://qmsharing.space/2018/12/20/DVWA-csp/" title="DVWA 总结系列之 CSP 篇">https://qmsharing.space/2018/12/20/DVWA-csp/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -482,11 +497,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/DVWA/" rel="tag"># DVWA</a>
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/CSP/" rel="tag"># CSP</a>
           
-            <a href="/tags/Qt/" rel="tag"># Qt</a>
+            <a href="/tags/XSS/" rel="tag"># XSS</a>
           
         </div>
       
@@ -499,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/25/Bandwagonhost-Hexo-Nginx-Namesilo/" rel="next" title="Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结">
-                <i class="fa fa-chevron-left"></i> Bandwagonhost+Hexo+Nginx+Namesilo 搭建个人Blog经验总结
+              <a href="/2018/12/18/Wechall-order-by-query/" rel="next" title="Wechall 系列之 order_by_query">
+                <i class="fa fa-chevron-left"></i> Wechall 系列之 order_by_query
               </a>
             
           </div>
@@ -508,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/16/Setup-gitalk/" rel="prev" title="Hexo next 配置 Gitalk 总结">
-                Hexo next 配置 Gitalk 总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -754,7 +765,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-篇"><span class="nav-number">1.</span> <span class="nav-text">Git 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qt-篇"><span class="nav-number">2.</span> <span class="nav-text">Qt 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-篇"><span class="nav-number">3.</span> <span class="nav-text">Hexo 篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本题目标"><span class="nav-number">1.</span> <span class="nav-text">本题目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low"><span class="nav-number">2.</span> <span class="nav-text">Low</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Medium"><span class="nav-number">3.</span> <span class="nav-text">Medium</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High"><span class="nav-number">4.</span> <span class="nav-text">High</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Impossible"><span class="nav-number">5.</span> <span class="nav-text">Impossible</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>

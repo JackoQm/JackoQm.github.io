@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="前言本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路. 难度分析本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-19T08:53:49.803Z">
+<meta property="og:updated_time" content="2018-12-19T09:07:33.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wechall 系列之 order_by_query">
 <meta name="twitter:description" content="前言本系列的初衷和 Pwnable.kr 系列一样, 是为了在最大程度保留游戏乐趣的前提下, 给卡壳的 Player 提供一定的提示, 帮助其完成该题并学习到分析的思路. 难度分析本题虽然在难度评分上是属于中等偏上的难度, 但如果你之前有做过 PHP 0815 的话, 难度会稍微降低一定(毕竟注入点好找了). 但本题难在考察了一种稍微特殊的 SQL 盲注, 需要 Player 有一定的知识面, 并">
@@ -355,7 +355,7 @@
                 
               
 
-              <time title="创建时间：2018-12-19 02:53:51 / 修改时间：08:53:49" itemprop="dateCreated datePublished" datetime="2018-12-19T02:53:51Z">2018-12-19</time>
+              <time title="创建时间：2018-12-19 02:53:51 / 修改时间：09:07:33" itemprop="dateCreated datePublished" datetime="2018-12-19T02:53:51Z">2018-12-19</time>
             
 
             
@@ -442,6 +442,7 @@
 <p>有些人可能做过 PHP 0815, 然后轻易地发现这个漏洞, 但他会说, 这个 $orderby 还被 escape 过, 怎么还存在注入呢? 如果你做过 No Escape 这题, 你会知道 mysqli_real_escape_string 仅过滤个别特殊字符, 但这个函数无法防御数字型注入和类似这种 order by 注入, 因此你只要不用任何引号, 其他的注释符号(– 和 #)都是能正常使用的.</p>
 <p>有人可能已经发行了这个注入点, 并且成功注入了, 但却不知道下一步该怎么做? 这其实也是本题的一个难点, 因为 order by 的特殊性(它基本只能放在语句末尾), 导致无法使用常用的 union select 大法, 而且很多的注入方法也会失效. 但也并不是无法注入的, 既然我们不能 “明注”, 我们可以盲注啊. 这里提示一下, order by 能接 if 或 case 语句, 然后你就可以根据不同的结果, 控制显示的结果从而猜解出答案. 再提示下去, 答案就出来了, 如果你还是不懂, 可以在留言提出你的问题, 我看到后会尽快解答.</p>
 <h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>解答步骤和 Writeup 可以在我的 Github 中找到: <a href="https://github.com/JackoQm/CTF-Writeups/tree/master/Wechall/PHP/order_by_query" target="_blank" rel="noopener">JackoQm’s Github: order_by_query</a></p>
+<p><strong>注: 本题还有小彩蛋, 还是挺有意思的, 不要过错哦 : )</strong></p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/icez/p/Mysql-Order-By-Injection-Summary.html" target="_blank" rel="noopener">Mysql Order By注入总结</a></p>
 
       
@@ -507,6 +508,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/20/DVWA-csp/" rel="prev" title="DVWA 总结系列之 CSP 篇">
+                DVWA 总结系列之 CSP 篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -587,7 +592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -683,7 +688,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
