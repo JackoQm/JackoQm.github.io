@@ -113,14 +113,14 @@
   <meta name="description" content="难度分析本题主要考的是知识面, 它并没有考什么高超的技术, 所以难度来说如果你知道这个知识点, 那么这题简单的不行, 但如果你不知道(和我一样), 那做的就会非常痛苦.">
 <meta name="keywords" content="Exploit,Pwnable.kr,脑洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pwnablekr-otp">
+<meta property="og:title" content="Pwnable.kr 提示之 otp 篇">
 <meta property="og:url" content="https://qmsharing.space/2019/01/03/pwnablekr-otp/index.html">
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="难度分析本题主要考的是知识面, 它并没有考什么高超的技术, 所以难度来说如果你知道这个知识点, 那么这题简单的不行, 但如果你不知道(和我一样), 那做的就会非常痛苦.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-04T08:33:32.607Z">
+<meta property="og:updated_time" content="2019-01-04T08:37:43.763Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pwnablekr-otp">
+<meta name="twitter:title" content="Pwnable.kr 提示之 otp 篇">
 <meta name="twitter:description" content="难度分析本题主要考的是知识面, 它并没有考什么高超的技术, 所以难度来说如果你知道这个知识点, 那么这题简单的不行, 但如果你不知道(和我一样), 那做的就会非常痛苦.">
 
 
@@ -140,7 +140,7 @@
   };
 </script>
 
-  <title>pwnablekr-otp | Qm's Blog</title>
+  <title>Pwnable.kr 提示之 otp 篇 | Qm's Blog</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pwnablekr-otp
+          <h1 class="post-title" itemprop="name headline">Pwnable.kr 提示之 otp 篇
               
             
           </h1>
@@ -355,7 +355,7 @@
                 
               
 
-              <time title="创建时间：2019-01-04 03:30:38 / 修改时间：08:33:32" itemprop="dateCreated datePublished" datetime="2019-01-04T03:30:38Z">2019-01-04</time>
+              <time title="创建时间：2019-01-04 03:30:38 / 修改时间：08:37:43" itemprop="dateCreated datePublished" datetime="2019-01-04T03:30:38Z">2019-01-04</time>
             
 
             
@@ -450,8 +450,8 @@
 <p>整个程序逻辑很简单明了, 我的注释已经在关键位置进行了说明. 官网特别提醒, 本题不是竞争问题, 叫我们不要用暴力算法. 经过基本的审计, 再加上程序自身的限制, 你会发现整个程序基本无懈可击. 但我发现以往的程序读取随机数一般是去找 /dev/random 文件读取, 因此我特地去了解了这两个文件的区别, 以求发现注入点. 刚开始, 我得知 urandom 是非阻塞式的伪随机数生成器, 而 random 是”真”随机生成器, 我还在想有没有办法能让系统的熵值降到 0, 然后生成一样的随机数, 从而破解文件内的随机数.</p>
 <p>但是, 这里有两个问题: 1. 随机数的熵值在被消耗达到最低值(目标系统设定是64字节, 通过 <code>cat /proc/sys/kernel/random/read_wakeup_threshold</code> 来查看)会阻塞 random, 这样熵值无法通过任何手段保持稳定. 2. 即使能做到控制熵值, urandom 产生可预测的随机数的条件是要系统刚刚启动, 还没有足够的熵来生成 urandom 的种子这个前提, 但我们是没办法让目标系统重启的, 所以破解 urandom 其实是个”不可能”的任务.</p>
 <p>这里我其实有参考了一下网上的一些说法, 才觉得这题脑洞真大. 嗯… 我们是不可以预测随机数, 但如果我们让程序写不出任何内容, 那它再读取一个空文件, passcode 肯定是等于0的. 我不得不承认, 这个想法太特么绝了!!! 因为我是提示性文章, 这里我就提示一个 bash 指令 ulimit (做完这题, 我才觉得这个指令原来这么厉害, 以前真的很少用, 除了为了写出 core file). 如果你直接 man ulimit 是不行的, 会展示 ulimit 函数的说明, 这个指令的说明是整合在 bash 的说明中的, 因此你需要 man bash 然后再搜索 ulimit 这个关键字才行.</p>
-<div align="center"><font color="red"> ========== 进一步剧透分界线 ========== </font></div>
-
+<p><br></p>
+<p><div align="center"><font color="red"> ========== 进一步剧透分界线 ========== </font></div><br><br></p>
 <p>这里涉及下一步的提示, 如果你还没有玩转 ulimit 指令的话, 希望能完成上一步后再看这里.</p>
 <p>有些人通过上述方法, 成功限制了程序写出文件大小, 但在服务端执行(或者本地), 会发现报错 “File size limit exceeded (core dumped) “, 然后调试 core 文件, 发现是 SIGXFSZ 信号. 其实, 太过具体的成因我现在也不是很明确, 但是, 如果把它作为子进程执行的话, 并不会触发这个 SIGXFSZ 信号, 这里提示一下 Python 的 subprocess 模块.</p>
 <h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>解答步骤和 Writeup 可以在我的 Github 中找到: <a href="https://github.com/JackoQm/CTF-Writeups/tree/master/Pwnable.kr/Rookiss/otp" target="_blank" rel="noopener">otp writeup</a></p>
@@ -484,7 +484,7 @@
     <strong>本文作者： </strong>Jacko Qm</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://qmsharing.space/2019/01/03/pwnablekr-otp/" title="pwnablekr-otp">https://qmsharing.space/2019/01/03/pwnablekr-otp/</a>
+    <a href="https://qmsharing.space/2019/01/03/pwnablekr-otp/" title="Pwnable.kr 提示之 otp 篇">https://qmsharing.space/2019/01/03/pwnablekr-otp/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
