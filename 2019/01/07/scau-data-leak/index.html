@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/question_leak.png">
 <meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/ip_leak.png">
 <meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/hacked_in.PNG">
-<meta property="og:updated_time" content="2019-01-07T12:30:43.188Z">
+<meta property="og:updated_time" content="2019-01-07T12:32:33.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="华南农业大学信息泄露漏洞挖掘(漏洞已修复)">
 <meta name="twitter:description" content="前言本漏洞的利用完全没有用到任何高超的技巧, 真因为如此才会让人觉得毛骨悚然, 一个漏洞如果有一定危害, 但利用门槛太低, 会造成很严重的后果. 我写本文目的主要是觉得, 即便现在不少高校对信息安全有所重视, 一些低级的漏洞很难见到了, 但安全问题总是遵从木桶原则, 纵使我无法攻破你的登录系统, 我还是可以通过你的别的漏洞获取到我要的东西. 本文涉及的漏洞我已经提交到教育 SRC, 在笔者发稿前已">
@@ -362,7 +362,7 @@
                 
               
 
-              <time title="创建时间：2019-01-07 07:20:16 / 修改时间：12:30:43" itemprop="dateCreated datePublished" datetime="2019-01-07T07:20:16Z">2019-01-07</time>
+              <time title="创建时间：2019-01-07 07:20:16 / 修改时间：12:32:33" itemprop="dateCreated datePublished" datetime="2019-01-07T07:20:16Z">2019-01-07</time>
             
 
             
@@ -431,13 +431,13 @@
 <h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>本漏洞存在于华南农业大学统一身份认证平台的密码找回处, 是一个严重的逻辑漏洞. 在密码找回界面, 输入学号后, 系统会默认该用户已经成功登陆, 因此凭借登陆后的 sessionid 就能获取到该用户的敏感信息, 以及可以随意修改用户的绑定手机号以及密保问题.</p>
 <h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>通过 <code>https://cas.scau.edu.cn/safe/findbyemail.jsp</code>进入密码找回界面或者在统一身份认证平台点击找回密码:</p>
 <p><img src="/2019/01/07/scau-data-leak/main_view.PNG" alt="统一身份认证登录界面"></p>
-<p>然后输入学号和验证码, 点击”短信找回密码”, 就会跳转到 <code>https://cas.scau.edu.cn/safe/sendphone1.jsp</code>, 如图 sendphone 所示. </p>
+<p>然后输入学号和验证码, 点击”短信找回密码”, 就会跳转到 <code>https://cas.scau.edu.cn/safe/sendphone1.jsp</code>. </p>
 <p><img src="/2019/01/07/scau-data-leak/sendphone.png" alt="找回界面"></p>
-<p>这时, 点击右上角的学号(原先这里显示登录), 就直接跳转到 <code>https://cas.scau.edu.cn/safe/casGenericSuccess.jsp</code>. 这个界面是个人设置界面, 里面有着详细的个人信息, 包括姓名, 身份证号, 手机号(如果有绑定的话), 邮箱, 身份等敏感信息, 如图 data_leak 所示.</p>
+<p>这时, 点击右上角的学号(原先这里显示登录), 就直接跳转到 <code>https://cas.scau.edu.cn/safe/casGenericSuccess.jsp</code>. 这个界面是个人设置界面, 里面有着详细的个人信息, 包括姓名, 身份证号, 手机号(如果有绑定的话), 邮箱, 身份等敏感信息.</p>
 <p><img src="/2019/01/07/scau-data-leak/data_leak.PNG" alt="敏感信息泄露"></p>
 <p>除此之外, 还可以通过该界面对绑定手机进行重新设置, 以及设置新的密保问题(如果用户已经绑定了手机或设置了问题, 那攻击者就能直接看到了). </p>
 <p><img src="/2019/01/07/scau-data-leak/question_leak.png" alt="密保问题泄露"></p>
-<p>登录成功后, 还可以通过 <code>https://cas.scau.edu.cn/safe/user/log.jsp</code> 可以获得用户的登录信息, 如图 ip_leak 所示, 该信息泄漏了用户使用的 ip 地址, 以及登录时间.</p>
+<p>登录成功后, 还可以通过 <code>https://cas.scau.edu.cn/safe/user/log.jsp</code> 可以获得用户的登录信息, 该信息泄漏了用户使用的 ip 地址, 以及登录时间.</p>
 <p><img src="/2019/01/07/scau-data-leak/ip_leak.png" alt="登录信息泄露"></p>
 <p>本来漏洞的利用到此为止, 但我发现华农的登录初始化密码是身份证号码后六位, 那么如果有些同学没有立即更改初始密码, 攻击者就可以通过修改密码界面来”为其修改”密码, 从而直接登录华农统一平台, 统一平台里设置的个人隐私更加的多. </p>
 <p><img src="/2019/01/07/scau-data-leak/hacked_in.PNG" alt="直接登录统一平台"></p>
