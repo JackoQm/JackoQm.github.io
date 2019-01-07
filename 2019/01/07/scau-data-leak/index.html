@@ -118,17 +118,17 @@
 <meta property="og:site_name" content="Qm&#39;s Blog">
 <meta property="og:description" content="前言本漏洞的利用完全没有用到任何高超的技巧, 真因为如此才会让人觉得毛骨悚然, 一个漏洞如果有一定危害, 但利用门槛太低, 会造成很严重的后果. 我写本文目的主要是觉得, 即便现在不少高校对信息安全有所重视, 一些低级的漏洞很难见到了, 但安全问题总是遵从木桶原则, 纵使我无法攻破你的登录系统, 我还是可以通过你的别的漏洞获取到我要的东西. 本文涉及的漏洞我已经提交到教育 SRC, 在笔者发稿前已">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/main_view.PNG">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/sendphone.png">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/data_leak.PNG">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/question_leak.png">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/ip_leak.png">
-<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/hacked_in.PNG">
-<meta property="og:updated_time" content="2019-01-07T12:25:45.320Z">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/main_view.PNG">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/sendphone.png">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/data_leak.PNG">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/question_leak.png">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/ip_leak.png">
+<meta property="og:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/hacked_in.PNG">
+<meta property="og:updated_time" content="2019-01-07T12:30:43.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="华南农业大学信息泄露漏洞挖掘(漏洞已修复)">
 <meta name="twitter:description" content="前言本漏洞的利用完全没有用到任何高超的技巧, 真因为如此才会让人觉得毛骨悚然, 一个漏洞如果有一定危害, 但利用门槛太低, 会造成很严重的后果. 我写本文目的主要是觉得, 即便现在不少高校对信息安全有所重视, 一些低级的漏洞很难见到了, 但安全问题总是遵从木桶原则, 纵使我无法攻破你的登录系统, 我还是可以通过你的别的漏洞获取到我要的东西. 本文涉及的漏洞我已经提交到教育 SRC, 在笔者发稿前已">
-<meta name="twitter:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/scau_data_leak/main_view.PNG">
+<meta name="twitter:image" content="https://qmsharing.space/2019/01/07/scau-data-leak/main_view.PNG">
 
 
 
@@ -362,7 +362,7 @@
                 
               
 
-              <time title="创建时间：2019-01-07 07:20:16 / 修改时间：12:25:45" itemprop="dateCreated datePublished" datetime="2019-01-07T07:20:16Z">2019-01-07</time>
+              <time title="创建时间：2019-01-07 07:20:16 / 修改时间：12:30:43" itemprop="dateCreated datePublished" datetime="2019-01-07T07:20:16Z">2019-01-07</time>
             
 
             
@@ -427,20 +427,20 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本漏洞的利用完全没有用到任何高超的技巧, 真因为如此才会让人觉得毛骨悚然, 一个漏洞如果有一定危害, 但利用门槛太低, 会造成很严重的后果. 我写本文目的主要是觉得, 即便现在不少高校对信息安全有所重视, 一些低级的漏洞很难见到了, 但安全问题总是遵从木桶原则, 纵使我无法攻破你的登录系统, 我还是可以通过你的别的漏洞获取到我要的东西. 本文涉及的漏洞我已经提交到教育 SRC, 在笔者发稿前已经被修复了, 所以大家也就随便看看就好.</p>
-<p>&lt;! – more –&gt;</p>
+<a id="more"></a>
 <h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>本漏洞存在于华南农业大学统一身份认证平台的密码找回处, 是一个严重的逻辑漏洞. 在密码找回界面, 输入学号后, 系统会默认该用户已经成功登陆, 因此凭借登陆后的 sessionid 就能获取到该用户的敏感信息, 以及可以随意修改用户的绑定手机号以及密保问题.</p>
 <h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>通过 <code>https://cas.scau.edu.cn/safe/findbyemail.jsp</code>进入密码找回界面或者在统一身份认证平台点击找回密码:</p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/main_view.PNG" alt="统一身份认证登录界面"></p>
+<p><img src="/2019/01/07/scau-data-leak/main_view.PNG" alt="统一身份认证登录界面"></p>
 <p>然后输入学号和验证码, 点击”短信找回密码”, 就会跳转到 <code>https://cas.scau.edu.cn/safe/sendphone1.jsp</code>, 如图 sendphone 所示. </p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/sendphone.png" alt="找回界面"></p>
+<p><img src="/2019/01/07/scau-data-leak/sendphone.png" alt="找回界面"></p>
 <p>这时, 点击右上角的学号(原先这里显示登录), 就直接跳转到 <code>https://cas.scau.edu.cn/safe/casGenericSuccess.jsp</code>. 这个界面是个人设置界面, 里面有着详细的个人信息, 包括姓名, 身份证号, 手机号(如果有绑定的话), 邮箱, 身份等敏感信息, 如图 data_leak 所示.</p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/data_leak.PNG" alt="敏感信息泄露"></p>
+<p><img src="/2019/01/07/scau-data-leak/data_leak.PNG" alt="敏感信息泄露"></p>
 <p>除此之外, 还可以通过该界面对绑定手机进行重新设置, 以及设置新的密保问题(如果用户已经绑定了手机或设置了问题, 那攻击者就能直接看到了). </p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/question_leak.png" alt="密保问题泄露"></p>
+<p><img src="/2019/01/07/scau-data-leak/question_leak.png" alt="密保问题泄露"></p>
 <p>登录成功后, 还可以通过 <code>https://cas.scau.edu.cn/safe/user/log.jsp</code> 可以获得用户的登录信息, 如图 ip_leak 所示, 该信息泄漏了用户使用的 ip 地址, 以及登录时间.</p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/ip_leak.png" alt="登录信息泄露"></p>
+<p><img src="/2019/01/07/scau-data-leak/ip_leak.png" alt="登录信息泄露"></p>
 <p>本来漏洞的利用到此为止, 但我发现华农的登录初始化密码是身份证号码后六位, 那么如果有些同学没有立即更改初始密码, 攻击者就可以通过修改密码界面来”为其修改”密码, 从而直接登录华农统一平台, 统一平台里设置的个人隐私更加的多. </p>
-<p><img src="/2019/01/07/scau-data-leak/scau_data_leak/hacked_in.PNG" alt="直接登录统一平台"></p>
+<p><img src="/2019/01/07/scau-data-leak/hacked_in.PNG" alt="直接登录统一平台"></p>
 <h2 id="漏洞影响"><a href="#漏洞影响" class="headerlink" title="漏洞影响"></a>漏洞影响</h2><p>这个漏洞利用难度极低, 并且学号并不属于敏感信息, 通过百度一搜一大堆, 利用学号的连续性, 还可以直接猜解出一个专业各个班级的学号, 非常容易获取到敏感信息.  我还写了一个 Python 脚本来测试获取信息(现在这个脚本已经没用了, 所以我也不放出来了), 结果是完全可以做到批量导出.</p>
 <p>之所以能做到批量导出, 也得益于该网站所谓的”验证码”, 你可以通过 <code>https://cas.scau.edu.cn/safe/yanzhengma.jsp</code>来获取验证码原文(需要附上 session_id), 从而绕过验证码, 然后攻击者可以通过猜测用户的学号(学号毕竟相连), 从而一次性泄漏一大批敏感信息.</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在我将本漏洞提交给教育 SRC 后,  校方已经在短时间内修复该漏洞, 现在已经不存在该漏洞了. 即使这样, 我也是觉得高校对于学生信息的保护还是做得不够, 这个统一认证平台应该是外包出去的, 我通过一个链接看到了这个公司的信息, 但我觉得如此低级的逻辑漏洞存在于一个重本学校, 可见学校并没有对自己系统做充足的检查就让其上线, 如果当时这个漏洞被不法分子挖出来, 那后果可能是华农大部分学生的身份信息都已经被泄漏了. 笔者写本文仅希望高校能重视学生的个人敏感信息的保护, 对于这种关键系统, 一定要再三进行检测后才上线, 不然最后导致严重后果, 于学生, 于学校都没有任何好处.</p>
